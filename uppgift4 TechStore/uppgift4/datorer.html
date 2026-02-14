@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+   <!-- Viewport-meta för responsiv design --> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datorer & Tillbehör - Tech Store</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/category.css">
+    <!-- Responsiva stilar -->
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<!--
+/**
+ * TechStore - Kategori: Datorer & Tillbehör
+ * 
+ * Denna fil implementerar kategorisidan för datorer och tillbehör med responsiv design.
+ * Sidan är uppbyggd med en tvåkolumnslayout på desktop som omvandlas till en
+ * enkelkolumnslayout på mobila enheter.
+ *
+ * Designbeslut:
+ * - Använder en sidopanel för filter som placeras ovanför produkterna på mobil
+ * - Implementerar en produktrutnät som ändrar antal kolumner baserat på skärmstorlek
+ * - Använder konsekvent färgschema med #00AA00 som accentfärg
+ * - Inkluderar responsiva meta-taggar för korrekt visning på alla enheter
+ * - Använder flexbox och grid för responsiv layout
+ *
+ * Responsiva funktioner:
+ * - Filterpanelen kollapsar till en dropdown på mobila enheter
+ * - Produktrutnätet ändras från 4 kolumner (desktop) till 1 kolumn (mobil)
+ * - Navigationsmenyn omvandlas till en hamburgermenyn på små skärmar
+ * - Sökfältet expanderar för att ta upp hela bredden på mobila enheter
+ *
+ * Tillgänglighet:
+ * - Semantiska HTML-element används för bättre skärmläsarstöd
+ * - Formulärelement har associerade etiketter
+ * - Bilder har alt-text för skärmläsare
+ * - Färgkontrast följer WCAG-riktlinjer
+ *
+ * Kopplade filer:
+ * - css/styles.css: Grundläggande stilar
+ * - css/category.css: Kategorisidans specifika stilar
+ * - css/responsive.css: Responsiva stilar för alla skärmstorlekar
+ * - js/category.js: JavaScript för filterhantering och produktsortering
+ * - js/responsive.js: JavaScript för responsiv funktionalitet
+ */
+-->
+
+
+
+<body>
+    <!-- 
+      Header-sektion
+      Designad för att vara responsiv med flexbox som omorganiseras på mindre skärmar.
+      Logotypen, sökfältet och användaråtgärderna staplas vertikalt på mobila enheter.
+    -->
+    <header>
+        <div class="header-top">
+            <div class="logo">
+                <a href="index.html" class="logo-text">Tech<span class="logo-highlight">Store</span></a>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Sök produkter...">
+                <button type="submit">Sök</button>
+            </div>
+            <div class="user-actions">
+                <a href="#" class="account-link"> &#128100; Mitt Konto</a>
+                <a href="#" class="cart-link">&#128722; Varukorg <span class="cart-count">(0)</span></a>
+            </div>
+        </div>
+        <!-- 
+          Navigationsmeny
+          Omvandlas till en hamburgermenyn på mobila enheter via JavaScript i responsive.js
+        -->
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Hem</a></li>
+                <li><a href="datorer.html" class="active">Datorer & Tillbehör</a></li>
+                <li><a href="mobil.html">Mobiltelefoner</a></li>
+                <li><a href="gaming.html">Gaming & Konsoler</a></li>
+                <li><a href="ljud.html">Ljud & Bild</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 
+          Brödsmulor för navigation
+          Hjälper användaren att förstå var de befinner sig i webbplatsens hierarki
+        -->
+        <div class="breadcrumbs">
+            <a href="index.html">Hem</a> > Datorer & Tillbehör
+        </div>
+        <!-- 
+          Kategoriinnehåll
+          Använder flexbox för layout som ändras från rad till kolumn på mobila enheter
+        -->
+        
+        <div class="category-content">
+            <!-- 
+              Filterpanel
+              På mobila enheter visas denna som en expanderbar panel via JavaScript
+            -->
+            <aside class="filter-sidebar">
+                <div class="filter-container">
+                    <h3>Filtrera produkter</h3>
+                    <!-- Filtergrupper med expanderbara sektioner -->
+                    
+                    <div class="filter-group">
+                        <h4>Typ <span class="toggle-icon">-</span></h4>
+                        <ul>
+                            <!-- Filteralternativ med checkboxar -->
+                            <!-- Varje objekt använder flexbox för korrekt justering på alla enheter -->
+                            <li>
+                                <input type="checkbox" id="laptop" name="type" value="laptop">
+                                <label for="laptop">Bärbara datorer</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="desktop" name="type" value="desktop">
+                                <label for="desktop">Stationära datorer</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="monitor" name="type" value="monitor">
+                                <label for="monitor">Skärmar</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="accessories" name="type" value="accessories">
+                                <label for="accessories">Tillbehör</label>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h4>Märke <span class="toggle-icon">+</span></h4>
+                        <ul class="collapsed">
+                            <li>
+                                <input type="checkbox" id="apple" name="brand" value="apple">
+                                <label for="apple">Apple</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="dell" name="brand" value="dell">
+                                <label for="dell">Dell</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="hp" name="brand" value="hp">
+                                <label for="hp">HP</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="lenovo" name="brand" value="lenovo">
+                                <label for="lenovo">Lenovo</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="asus" name="brand" value="asus">
+                                <label for="asus">Asus</label>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h4>Prisintervall <span class="toggle-icon">+</span></h4>
+                        <ul class="collapsed">
+                            <li>
+                                <input type="checkbox" id="price1" name="price" value="0-5000">
+                                <label for="price1">0 - 5 000 kr</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="price2" name="price" value="5000-10000">
+                                <label for="price2">5 000 - 10 000 kr</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="price3" name="price" value="10000-15000">
+                                <label for="price3">10 000 - 15 000 kr</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="price4" name="price" value="15000+">
+                                <label for="price4">15 000 kr +</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Ytterligare filtergrupper... -->
+                    <button class="apply-filters">Tillämpa filter</button>
+                </div>
+            </aside>
+            <!-- 
+              Produktsektion
+              Innehåller rubriken, sorteringsalternativ och produktrutnätet
+            -->
+            <section class="product-section">
+              <!-- 
+                  Kategorirubrik och sortering
+                  Använder flexbox som ändras från rad till kolumn på mobila enheter
+                -->  
+                <div class="category-header">
+                    <h1>Datorer & Tillbehör</h1>
+                    <div class="sort-options">
+                        <label for="sort">Sortera efter:</label>
+                        <select id="sort" name="sort">
+                            <option value="popularity">Popularitet</option>
+                            <option value="price-low">Pris (Lägst först)</option>
+                            <option value="price-high">Pris (Högst först)</option>
+                            <option value="name">Namn (A-Ö)</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- 
+                  Produktrutnät
+                  Använder CSS grid som ändrar antal kolumner baserat på skärmstorlek:
+                  - 1 kolumn på mobil (max-width: 576px)
+                  - 2 kolumner på surfplatta (577px till 768px)
+                  - 3 kolumner på liten desktop (769px till 992px)
+                  - 4 kolumner på stor desktop (993px och uppåt)
+                -->
+                <div class="product-grid">
+                    <!-- Produktkort med konsekvent struktur för enhetlig visning -->
+                    <!-- Varje kort använder flexbox för vertikal layout med produktbild, titel, beskrivning och pris -->
+                    <!-- Product 1 -->
+                    <div class="product-card" data-id="1001">
+                        <img src="images/macbook.jpg" alt="MacBook Air M2">
+                        <div class="product-card-content">
+                            <h3>MacBook Air M2</h3>
+                            <div class="product-description">13.6" Retina Display, 8GB RAM, 256GB SSD</div>
+                            <div class="product-price">12 995 kr</div>
+                            <button class="add-to-cart" data-id="1001">Lägg i varukorg</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 2 -->
+                    <div class="product-card" data-id="1002">
+                        <img src="images/dell-xps.jpg" alt="Dell XPS 13">
+                        <div class="product-card-content">
+                            <h3>Dell XPS 13</h3>
+                            <div class="product-description">13.4" FHD+ Display, Intel i7, 16GB RAM, 512GB SSD</div>
+                            <div class="product-price">14 495 kr</div>
+                            <button class="add-to-cart" data-id="1002">Lägg i varukorg</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 3 -->
+                    <div class="product-card" data-id="1003">
+                        <img src="images/lenovo-thinkpad.jpg" alt="Lenovo ThinkPad X1">
+                        <div class="product-card-content">
+                            <h3>Lenovo ThinkPad X1</h3>
+                            <div class="product-description">14" 4K Display, Intel i7, 16GB RAM, 1TB SSD</div>
+                            <div class="product-price">16 995 kr</div>
+                            <button class="add-to-cart" data-id="1003">Lägg i varukorg</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 4 -->
+                    <div class="product-card" data-id="1004">
+                        <img src="images/hp-pavilion.jpg" alt="HP Pavilion Gaming Desktop">
+                        <div class="product-card-content">
+                            <h3>HP Pavilion Gaming Desktop</h3>
+                            <div class="product-description">AMD Ryzen 7, 16GB RAM, 1TB SSD, RTX 3060</div>
+                            <div class="product-price">13 495 kr</div>
+                            <button class="add-to-cart" data-id="1004">Lägg i varukorg</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 5 -->
+                    <div class="product-card" data-id="1005">
+                        <img src="images/gaming-pc.jpg" alt="Custom Gaming PC">
+                        <div class="product-card-content">
+                            <h3>Custom Gaming PC</h3>
+                            <div class="product-description">Intel i9, 32GB RAM, 2TB SSD, RTX 3080</div>
+                            <div class="product-price">24 995 kr</div>
+                            <button class="add-to-cart" data-id="1005">Lägg i varukorg</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 6 -->
+                    <div class="product-card" data-id="1006">
+                        <img src="images/monitor.jpg" alt="27 4K Monitor">
+                        <div class="product-card-content">
+                            <h3>27" 4K Monitor</h3>
+                            <div class="product-description">4K UHD, 144Hz, 1ms Response Time, HDR</div>
+                            <div class="product-price">4 995 kr</div>
+                            <button class="add-to-cart" data-id="1006">Lägg i varukorg</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 7 -->
+                    <div class="product-card" data-id="1007">
+                        <img src="images/keyboard.jpg" alt="Mechanical Keyboard">
+                        <div class="product-card-content">
+                            <h3>Mechanical Keyboard</h3>
+                            <div class="product-description">RGB Backlit, Blue Switches, Programmable Keys</div>
+                            <div class="product-price">1 295 kr</div>
+                            <button class="add-to-cart" data-id="1007">Lägg i varukorg</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 8 -->
+                    <div class="product-card" data-id="1008">
+                        <img src="images/mouse.jpg" alt="Gaming Mouse">
+                        <div class="product-card-content">
+                            <h3>Gaming Mouse</h3>
+                            <div class="product-description">16000 DPI, RGB, 8 Programmable Buttons</div>
+                            <div class="product-price">895 kr</div>
+                            <button class="add-to-cart" data-id="1008">Lägg i varukorg</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- 
+                  Sidnumrering
+                  Visar information om antal produkter och länkar till fler sidor
+                -->
+                <div class="pagination">
+                    <div class="results-info">Visar 1-8 av 24 produkter</div>
+                    <div class="page-links">
+                        <a href="#" class="active">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">Nästa »</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 
+      Footer
+      Använder flexbox för layout som ändras från rad till kolumn på mobila enheter
+    -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Om TechStore</h3>
+                <ul>
+                    <li><a href="about.html">Om oss</a></li>
+                    <li><a href="contact.html">Kontakta oss</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Följ oss</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i>&#128279; Facebook</a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i>&#128279; Twitter</a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i>&#128279; Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript för kategorispecifik funktionalitet -->
+    <script src="js/category.js"></script>
+    <!-- JavaScript för responsiv funktionalitet -->
+    <script src="js/responsive.js"></script>
+</body>
+</html>

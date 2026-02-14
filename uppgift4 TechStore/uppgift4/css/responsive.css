@@ -1,0 +1,769 @@
+/**
+ * TechStore - Responsiv Stilmall
+ *
+ * Den här filen innehåller alla responsiva stilar för TechStore-webbplatsen.
+ * Den använder media queries för att anpassa layouten för olika skärmstorlekar.
+ * Jag har lagt till detaljerade kommentarer för att göra det lättare att hitta och förstå olika delar.
+ *
+ * Innehåll för att lättare hitta och navigera senare:
+ * 1. Grundinställningar
+ * 2. Sidfot vitt utrymme-korrigering
+ * 3. Mobila stilar (upp till 576px)
+ * 4. Tablet-stilar (577px till 768px)
+ * 5. Liten desktop-stilar (769px till 992px)
+ * 6. Stor desktop-stilar (993px och uppåt)
+ * 7. Sidspecifika justeringar
+ * 8. Sidhuvudförbättringar
+ * 9. Navigationsmeny
+ * 10. Verktygskorrigeringar
+ *
+ * Designbeslut:
+ * - Använder en mobil-först-strategi för responsiv design
+ * - Implementerar specifika brytpunkter för olika enheter
+ * - Anpassar layouter från kolumn till rad baserat på skärmstorlek
+ * - Optimerar touch-vänlighet på mobila enheter
+ * - Förhindrar horisontell scrollning och andra vanliga responsiva problem
+ */
+
+/* ======================================
+   1. Grundinställningar
+   ====================================== */
+/* 
+   Jag använder box-sizing: border-box för alla element för att säkerställa
+   att padding och border inkluderas i elementets totala bredd och höjd.
+   Detta gör det mycket lättare att skapa responsiva layouter.
+   
+   Jag förhindrar också horisontell scrollning genom att sätta max-width: 100%
+   och overflow-x: hidden på html och body.
+*/
+* {
+    box-sizing: border-box;
+  }
+  
+  /* Förhindra horisontell scrollning */
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* ======================================
+     2. Sidfot vitt utrymme-korrigering
+     ====================================== */
+  /* 
+     Denna sektion löser problemet med "flytande" sidfot genom att använda flexbox.
+     Genom att sätta display: flex och flex-direction: column på body,
+     och flex: 1 0 auto på main, säkerställer jag att sidfoten alltid hamnar längst ner,
+     även på sidor med lite innehåll.
+  */
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+  
+  main {
+    flex: 1 0 auto;
+  }
+  
+  footer {
+    flex-shrink: 0;
+    margin-bottom: 0;
+  }
+  
+  /* ======================================
+     3. Mobila stilar (upp till 576px)
+     ====================================== */
+  /* 
+     För mobila enheter ändrar jag layouten från rad till kolumn för många element.
+     Jag ökar också storleken på interaktiva element för att göra dem mer touch-vänliga.
+     Alla element får full bredd för att maximera det tillgängliga utrymmet.
+  */
+  @media only screen and (max-width: 576px) {
+    /* Sidhuvudsstilar */
+    header {
+      flex-direction: column;
+      padding: 10px;
+      width: 100%;
+    }
+  
+    .logo {
+      margin-bottom: 10px;
+    }
+  
+    /* Navigationsstilar */
+    nav ul {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    nav ul li {
+      margin: 5px 0;
+      width: 100%;
+      text-align: center;
+    }
+  
+    /* Huvudinnehåll */
+    main {
+      padding: 10px;
+      width: 100%;
+    }
+  
+    /* Produktrutnät */
+    .products-grid {
+      grid-template-columns: 1fr;
+      gap: 15px;
+      width: 100%;
+    }
+  
+    .product-card {
+      width: 100%;
+      margin: 10px 0;
+    }
+  
+    /* Produktdetaljsida */
+    .product-detail {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .product-image {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  
+    .product-info {
+      width: 100%;
+    }
+  
+    /* Kontaktformulär */
+    .contact-form {
+      width: 100%;
+    }
+  
+    input,
+    textarea {
+      width: 100%;
+    }
+  
+    /* Sidfot - FÖRENKLAD */
+    footer .footer-content {
+      flex-direction: column;
+    }
+  
+    footer .footer-section {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  
+    /* Korrigering för lång text som kan orsaka horisontell scrollning */
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    span,
+    a {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+  
+    /* Korrigering för tabeller som kan orsaka horisontell scrollning */
+    table {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+    }
+  }
+  
+  /* ======================================
+     4. Tablet-stilar (577px till 768px)
+     ====================================== */
+  /* 
+     För tablets använder jag en mellanliggande layout som balanserar mellan
+     mobil- och desktop-layouter. Produktrutnätet har två kolumner istället för en,
+     och sidfoten har två kolumner istället för en.
+  */
+  @media only screen and (min-width: 577px) and (max-width: 768px) {
+    /* Sidhuvudsstilar */
+    header {
+      padding: 15px;
+      width: 100%;
+    }
+  
+    /* Navigationsstilar */
+    nav ul {
+      flex-wrap: wrap;
+    }
+  
+    nav ul li {
+      margin: 5px 10px;
+    }
+  
+    /* Produktrutnät */
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      width: 100%;
+    }
+  
+    /* Produktdetaljsida */
+    .product-detail {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .product-image {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  
+    .product-info {
+      width: 100%;
+    }
+  
+    /* Sidfot - FÖRENKLAD */
+    footer .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  
+    footer .footer-section {
+      width: 48%;
+      margin-right: 2%;
+    }
+  
+    /* Korrigering för lång text som kan orsaka horisontell scrollning */
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    span,
+    a {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+  }
+  
+  /* ======================================
+     5. Liten desktop-stilar (769px till 992px)
+     ====================================== */
+  /* 
+     För mindre desktop-skärmar optimerar jag layouten för att balansera
+     mellan att visa tillräckligt med innehåll och behålla läsbarhet.
+     Produktrutnätet har tre kolumner, och jag implementerar specifika
+     korrigeringar för produktkort för att säkerställa konsekvent höjd.
+  */
+  @media only screen and (min-width: 769px) and (max-width: 992px) {
+    /* Produktrutnät */
+    .products-grid {
+      grid-template-columns: repeat(3, 1fr);
+      width: 100%;
+    }
+  
+    /* Produktdetaljsida */
+    .product-image {
+      width: 45%;
+    }
+  
+    .product-info {
+      width: 50%;
+    }
+  
+    /* Korrigering för produktkort vid denna specifika brytpunkt */
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+  
+    .product-title {
+      height: auto;
+      min-height: 2.75rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  
+    .product-description {
+      height: auto;
+      min-height: 2.5rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  
+    .price-container {
+      margin-top: auto;
+      min-height: 3.5rem;
+    }
+  
+    .product-info {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+  }
+  
+  /* ======================================
+     6. Stor desktop-stilar (993px och uppåt)
+     ====================================== */
+  /* 
+     För stora desktop-skärmar maximerar jag innehållsvisningen.
+     Jag sätter en max-bredd på behållare för att förhindra att innehållet
+     blir för brett på mycket stora skärmar, vilket skulle försämra läsbarheten.
+     Produktrutnätet har fyra kolumner för att visa fler produkter samtidigt.
+  */
+  @media only screen and (min-width: 993px) {
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  
+    /* Produktrutnät */
+    .products-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  /* ======================================
+     7. Sidspecifika justeringar
+     ====================================== */
+  /* 
+     Denna sektion innehåller specifika justeringar för olika sidor.
+     Jag fokuserar på att optimera varje sidas unika element för mobila enheter.
+  */
+  /* Startsida */
+  @media only screen and (max-width: 768px) {
+    .hero-banner {
+      height: auto;
+      padding: 20px;
+      width: 100%;
+    }
+  
+    .featured-categories {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .category-card {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  
+    /* Korrigering för välkomstsektionen */
+    .welcome-section,
+    .welcome-text {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+  
+  /* Om oss-sida */
+  @media only screen and (max-width: 768px) {
+    .about-content {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .about-image,
+    .about-text {
+      width: 100%;
+    }
+  
+    .about-image {
+      margin-bottom: 20px;
+    }
+  
+    .team-members {
+      grid-template-columns: 1fr;
+      width: 100%;
+    }
+  }
+  
+  /* Kontaktsida */
+  @media only screen and (max-width: 768px) {
+    .contact-container {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .contact-form,
+    .contact-info {
+      width: 100%;
+    }
+  
+    .contact-info {
+      margin-top: 30px;
+    }
+  }
+  
+  /* Produktdetaljsida */
+  @media only screen and (max-width: 768px) {
+    .product-gallery {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .gallery-main {
+      width: 100%;
+    }
+  
+    .gallery-thumbnails {
+      width: 100%;
+      display: flex;
+      overflow-x: auto;
+      margin-top: 15px;
+    }
+  
+    .gallery-thumbnail {
+      width: 80px;
+      height: 80px;
+      margin-right: 10px;
+    }
+  
+    .product-tabs {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .tab-content {
+      margin-top: 15px;
+      width: 100%;
+    }
+  }
+  
+  /* Kategorisidor (datorer, gaming, ljud, mobil) */
+  @media only screen and (max-width: 768px) {
+    .category-header {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .category-title {
+      margin-bottom: 15px;
+    }
+  
+    .filter-container {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .filter-section {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  
+    .sort-options {
+      width: 100%;
+    }
+  }
+  
+  /* ======================================
+     8. Sidhuvudförbättringar
+     ====================================== */
+  /* 
+     Jag har implementerat omfattande förbättringar för sidhuvudet på mobila enheter.
+     Elementen staplas vertikalt, sökfältet tar full bredd, och användaråtgärder
+     (konto, varukorg) visas tydligt med tillräcklig storlek för touch-interaktion.
+  */
+  @media only screen and (max-width: 768px) {
+    /* Sidhuvudsbehållare */
+    header {
+      width: 100%;
+    }
+  
+    /* Sidhuvudets övre sektion med logotyp, sök och användaråtgärder */
+    .header-top {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      align-items: center;
+    }
+  
+    /* Logotypstyling */
+    .logo {
+      margin-bottom: 15px;
+      text-align: center;
+    }
+  
+    .logo-text {
+      font-size: 24px;
+    }
+  
+    /* Sökfältsförbättringar */
+    .search-bar {
+      width: 100%;
+      margin: 10px 0;
+      display: flex;
+      gap: 8px;
+    }
+  
+    .search-bar input {
+      flex: 1;
+      min-width: 0;
+      height: 40px;
+      font-size: 16px;
+      padding: 0 10px;
+    }
+  
+    .search-bar button {
+      height: 40px;
+      min-width: 70px;
+      font-size: 16px;
+      padding: 0 15px;
+    }
+  
+    /* Användaråtgärder (konto, varukorg) */
+    .user-actions {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+  
+    .user-actions a {
+      padding: 8px 12px;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background-color: #f5f5f5;
+      border-radius: 4px;
+      margin: 0 5px;
+    }
+  
+    /* Navigationsmeny */
+    .main-nav {
+      width: 100%;
+      padding: 0;
+    }
+  
+    .main-nav ul {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding: 0;
+    }
+  
+    .main-nav li {
+      width: 100%;
+      margin: 0;
+    }
+  
+    .main-nav a {
+      display: block;
+      padding: 12px 15px;
+      font-size: 16px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+      background-color: #f8f8f8;
+    }
+  
+    /* Lägg till en mobilmeny-toggleknapp */
+    .main-nav::before {
+      content: "☰ Meny";
+      display: block;
+      padding: 10px 15px;
+      background-color: #f0f0f0;
+      text-align: center;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 5px;
+      border-radius: 4px;
+    }
+  }
+  
+  /* Tablet-förbättringar */
+  @media only screen and (min-width: 577px) and (max-width: 768px) {
+    .header-top {
+      padding: 15px;
+    }
+  
+    .search-bar {
+      max-width: 400px;
+    }
+  
+    .user-actions {
+      justify-content: center;
+      gap: 20px;
+    }
+  }
+  
+  /* ======================================
+     9. Navigationsmeny
+     ====================================== */
+  /* 
+     Jag har implementerat en responsiv navigationsmeny med en toggle-knapp på mobila enheter.
+     Menyn döljs som standard och visas när användaren klickar på toggle-knappen.
+     På desktop visas den vanliga menyn och mobilmenyn döljs.
+  */
+  /* Mobil navigationsmeny */
+  @media only screen and (max-width: 768px) {
+    /* Mobilmeny-toggleknapp */
+    .mobile-menu-toggle {
+      display: block;
+      cursor: pointer;
+      font-size: 24px;
+      padding: 5px 10px;
+      background-color: #f5f5f5;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      /* Positionera till vänster */
+      align-self: flex-start;
+      text-align: left;
+    }
+  
+    /* Dölj desktopmenyn på små skärmar */
+    nav ul.desktop-menu {
+      display: none;
+    }
+  
+    /* Stil för mobilmenyn */
+    nav ul.mobile-menu {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    nav ul.mobile-menu li {
+      margin: 5px 0;
+      width: 100%;
+      text-align: center;
+    }
+  }
+  
+  /* Visa desktopmenyn på större skärmar och dölj mobila element */
+  @media only screen and (min-width: 769px) {
+    .mobile-menu-toggle {
+      display: none;
+    }
+  
+    nav ul.desktop-menu {
+      display: flex;
+    }
+  
+    nav ul.mobile-menu {
+      display: none !important; /* Tvinga dölj på desktop */
+    }
+  }
+  
+  /* Enkel sidhuvudsresponsivitet */
+  @media only screen and (max-width: 768px) {
+    /* Få sidhuvudselement att staplas på mobil */
+    header {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    /* Säkerställ att sökformuläret tar full bredd */
+    header form {
+      width: 100%;
+      margin: 10px 0;
+    }
+  
+    /* Få konto- och varukorgslänkar att visas korrekt */
+    header > div:last-child {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 10px;
+    }
+  
+    /* Korrigering för element med fast bredd */
+    .container,
+    .wrapper,
+    .content,
+    section,
+    article,
+    aside {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+  }
+  
+  /* ======================================
+     10. Verktygskorrigeringar
+     ====================================== */
+  /* 
+     Denna sektion innehåller korrigeringar för vanliga responsiva problem.
+     Jag säkerställer att alla element har max-width: 100% för att förhindra
+     horisontell scrollning, och jag fixar specifika problem med knappar,
+     sociala länkar och sidfoten.
+  */
+  /* Korrigering för potentiella horisontella scrollningsproblem */
+  .row,
+  .col,
+  .column,
+  [class*="col-"] {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* Korrigering för knappar som kan vara för breda */
+  button,
+  .button,
+  .btn,
+  input[type="button"],
+  input[type="submit"] {
+    max-width: 100%;
+    white-space: normal;
+  }
+  
+  /* Sociala länkar i sidfoten - FÖRENKLAD */
+  @media only screen and (max-width: 768px) {
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .social-link {
+      margin-bottom: 10px;
+    }
+  }
+  
+  /* Ta bort eventuell margin-bottom som kan finnas på sidfoten */
+  @media only screen and (max-width: 768px) {
+    footer {
+      margin-bottom: 0;
+      padding-bottom: 20px;
+    }
+  }
+  
+  /* Produktkortskorrigeringar för alla skärmstorlekar */
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .product-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  
+  .price-container {
+    margin-top: auto;
+  }

@@ -1,0 +1,301 @@
+/**
+ * TechStore - Produktdetaljsida Stilmall
+ *
+ * Den här filen innehåller alla grundläggande stilar för produktdetaljsidan på TechStore-webbplatsen.
+ * Designen fokuserar på att framhäva produktbilderna och information på ett tydligt och användarvänligt sätt.
+ * Jag har implementerat interaktiva element som bildgalleri, kvantitetsväljare och produktflikar.
+ *
+ * Innehåll för att lättare hitta och navigera senare:
+ * 1. Brödsmulor
+ * 2. Produktdetaljbehållare
+ * 3. Produktbilder och galleri
+ * 4. Produktinformation
+ * 5. Kvantitetsväljare
+ * 6. Produktflikar
+ * 7. Responsiv design
+ *
+ * Designbeslut:
+ * - Använder CSS Grid för huvudlayouten för enkel responsivitet
+ * - Implementerar ett interaktivt bildgalleri med miniatyrer
+ * - Skapar tydliga visuella indikatorer för aktiva element
+ * - Använder #00AA00 som accentfärg för att matcha webbplatsens färgschema
+ * - Designar för optimal läsbarhet och användbarhet
+ */
+
+/* ======================================
+   1. Brödsmulor
+   ====================================== */
+/* 
+   Brödsmulor hjälper användare att navigera och förstå var de befinner sig.
+   Jag valde en subtil design med ">" som separator för att inte konkurrera med huvudinnehållet.
+   Hover-effekten i grön färg ger tydlig feedback när användaren interagerar med länkarna.
+*/
+.breadcrumb {
+    max-width: 1200px;
+    margin: 1rem auto;
+    padding: 0 1rem;
+}
+
+.breadcrumb ul {
+    display: flex;
+    list-style: none;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.breadcrumb li:not(:last-child)::after {
+    content: ">";
+    margin-left: 0.5rem;
+    color: #666;
+}
+
+.breadcrumb a {
+    color: #666;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    color: #00AA00;
+}
+
+/* ======================================
+   2. Produktdetaljbehållare
+   ====================================== */
+/* 
+   Jag valde CSS Grid för huvudlayouten för att enkelt kunna skapa en responsiv design.
+   Två lika stora kolumner på desktop ger en balanserad layout som enkelt kan ändras till en kolumn på mobil.
+   Gap på 2rem skapar tydlig separation mellan bilder och information.
+*/
+.product-detail-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.product-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+/* ======================================
+   3. Produktbilder och galleri
+   ====================================== */
+/* 
+   Jag designade bildgalleriet för att framhäva produkten på bästa sätt.
+   Huvudbilden har aspect-ratio: 1 för att säkerställa en konsekvent kvadratisk form.
+   Miniatyrbilderna har en tydlig aktiv-indikator med grön ram när de är valda.
+   Object-fit: contain säkerställer att hela bilden syns utan att förvrängas.
+*/
+.product-images {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.main-image {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f8f8f8;
+    aspect-ratio: 1;
+}
+
+.main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 1rem;
+}
+
+.thumbnail-gallery {
+    display: flex;
+    gap: 1rem;
+}
+
+.thumbnail {
+    width: 80px;
+    height: 80px;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0.5rem;
+    background: #f8f8f8;
+    object-fit: contain;
+}
+
+.thumbnail.active {
+    border-color: #00AA00;
+}
+
+/* ======================================
+   4. Produktinformation
+   ====================================== */
+/* 
+   Produktinformationen är strukturerad med tydlig hierarki och luftigt mellanrum.
+   Jag använde flexbox med gap för att skapa konsekvent mellanrum mellan elementen.
+   Lagerstatus visas i grön färg för att tydligt indikera tillgänglighet.
+*/
+.product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.product-info h1 {
+    font-size: 2rem;
+    color: #333;
+    margin: 0;
+}
+
+.stock-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.in-stock {
+    color: #00AA00;
+    font-weight: 500;
+}
+
+/* ======================================
+   5. Kvantitetsväljare
+   ====================================== */
+/* 
+   Jag designade kvantitetsväljaren för att vara intuitiv och lättanvänd.
+   Plus- och minusknapparna har tydlig visuell feedback vid hover.
+   Inmatningsfältet är centrerat och har tydliga avgränsningar.
+   Hela komponenten använder flexbox för att säkerställa korrekt alignment.
+*/
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.quantity-btn {
+    border: none;
+    background: #f5f5f5;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1.25rem;
+}
+
+.quantity-btn:hover {
+    background: #eee;
+}
+
+#quantity {
+    width: 60px;
+    text-align: center;
+    border: none;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    padding: 0.5rem;
+}
+
+/* ======================================
+   6. Produktflikar
+   ====================================== */
+/* 
+   Fliksystemet ger användaren möjlighet att växla mellan olika typer av produktinformation.
+   Jag implementerade en tydlig visuell indikator för den aktiva fliken med en grön understrykning.
+   Flikinnehållet visas/döljs med display: none/block för enkel JavaScript-integration.
+   Specifikationslistan har subtila avgränsningar för att förbättra läsbarheten.
+*/
+.product-tabs {
+    margin-top: 2rem;
+}
+
+.tab-buttons {
+    display: flex;
+    gap: 1rem;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 2rem;
+}
+
+.tab-btn {
+    padding: 1rem 2rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #666;
+    position: relative;
+}
+
+.tab-btn.active {
+    color: #00AA00;
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #00AA00;
+}
+
+.tab-panel {
+    display: none;
+    padding: 1rem 0;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+.specs-list {
+    list-style: none;
+    padding: 0;
+}
+
+.specs-list li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.specs-list li:last-child {
+    border-bottom: none;
+}
+
+/* ======================================
+   7. Responsiv design
+   ====================================== */
+/* 
+   På mobila enheter (max 768px) ändras layouten från två kolumner till en.
+   Miniatyrbilderna minskas något för att passa bättre på mindre skärmar.
+   Flikarna anpassas för att vara mer touch-vänliga med större tryckyta.
+*/
+@media (max-width: 768px) {
+    .product-detail {
+        grid-template-columns: 1fr;
+    }
+
+    .thumbnail {
+        width: 60px;
+        height: 60px;
+    }
+
+    .tab-buttons {
+        flex-wrap: wrap;
+    }
+
+    .tab-btn {
+        flex: 1;
+        padding: 1rem;
+        text-align: center;
+    }
+}

@@ -1,0 +1,316 @@
+/**
+ * TechStore - Kategorisidor Responsiv Stilmall
+ *
+ * Den här filen innehåller responsiva stilar specifikt för kategorisidorna på TechStore-webbplatsen.
+ * Den ska inkluderas efter huvudfilen responsive.css för att säkerställa korrekt stilprioritering.
+ * Jag har implementerat flera specifika lösningar för att förbättra användarupplevelsen på mobila enheter.
+ *
+ * Innehåll för att lättare hitta och navigera senare:
+ * 1. Mobila stilar (upp till 768px)
+ * 2. Tablet-stilar (577px till 991px)
+ * 3. Liten desktop (992px till 1199px)
+ * 4. Stor desktop (1200px och uppåt)
+ * 5. Filter-knapp för mobil
+ * 6. Direkta korrigeringar för filteralternativ
+ *
+ * Designbeslut:
+ * - Ändrar ordningen på element med CSS order-egenskapen för bättre mobilupplevelse
+ * - Skapar en toggle-knapp för filter på mobil för att spara utrymme
+ * - Anpassar antalet produktkolumner baserat på skärmstorlek
+ * - Implementerar specifika korrigeringar för checkbox-alignment på mobil
+ */
+
+/* ======================================
+   1. Mobila stilar (upp till 768px)
+   ====================================== */
+/* 
+   På mobila enheter har jag valt att visa produkterna först och filtren under.
+   Detta är ett medvetet UX-beslut eftersom användare primärt vill se produkter direkt.
+   Jag använder order-egenskapen i flexbox för att ändra den visuella ordningen utan att ändra HTML.
+*/
+@media only screen and (max-width: 768px) {
+    /* Kategorilayout */
+    .category-content {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    /* Filtersidofält */
+    .filter-sidebar {
+      width: 100%;
+      margin-bottom: 20px;
+      order: 2; /* Flytta filter under produkter på mobil */
+    }
+  
+    /* Produktsektion */
+    .product-section {
+      width: 100%;
+      order: 1; /* Visa produkter först på mobil */
+    }
+  
+    /* Kategorirubrik */
+    .category-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .category-header h1 {
+      margin-bottom: 15px;
+    }
+  
+    /* 
+       Sorteringsalternativ tar full bredd på mobil för att göra 
+       select-elementet större och lättare att använda med fingrar.
+    */
+    .sort-options {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  
+    .sort-options select {
+      width: 100%;
+      padding: 10px;
+    }
+  
+    /* Brödsmulor */
+    .breadcrumbs {
+      padding: 10px;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+  
+    /* Paginering */
+    .pagination {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .results-info {
+      margin-bottom: 10px;
+    }
+  
+    /* Filtergrupper */
+    .filter-group h4 {
+      padding: 12px 15px;
+      font-size: 16px;
+    }
+  
+    .filter-group ul {
+      padding: 10px 15px;
+    }
+  
+    .apply-filters {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+    }
+}
+  
+/* ======================================
+   2. Tablet-stilar (577px till 991px)
+   ====================================== */
+/* 
+   På tablets behåller jag sidofältet och produktsektionen sida vid sida,
+   men med justerade proportioner för bättre användning av utrymmet.
+   Produktrutnätet minskas till 2 kolumner för att behålla läsbarhet.
+*/
+@media only screen and (min-width: 577px) and (max-width: 991px) {
+    /* Kategorilayout */
+    .category-content {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  
+    /* Filtersidofält */
+    .filter-sidebar {
+      width: 30%;
+    }
+  
+    /* Produktsektion */
+    .product-section {
+      width: 68%;
+      margin-left: 2%;
+    }
+  
+    /* Produktrutnät - 2 kolumner på tablets */
+    .product-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+}
+  
+/* ======================================
+   3. Liten desktop (992px till 1199px)
+   ====================================== */
+/* 
+   För mindre desktopskärmar använder jag 3 produktkolumner
+   för att balansera mellan att visa många produkter och behålla läsbarhet.
+*/
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    /* Produktrutnät - 3 kolumner på liten desktop */
+    .product-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+}
+  
+/* ======================================
+   4. Stor desktop (1200px och uppåt)
+   ====================================== */
+/* 
+   På stora skärmar maximerar jag antalet produkter som visas
+   genom att använda 4 kolumner i rutnätet.
+*/
+@media only screen and (min-width: 1200px) {
+    /* Produktrutnät - 4 kolumner på stor desktop */
+    .product-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+}
+  
+/* ======================================
+   5. Filter-knapp för mobil
+   ====================================== */
+/* 
+   Jag skapade en toggle-knapp för filter på mobil med CSS ::before pseudo-element.
+   Detta sparar utrymme och ger en renare layout samtidigt som filtren är lättillgängliga.
+   Jag använder JavaScript för att lägga till/ta bort active-klassen.
+*/
+@media only screen and (max-width: 768px) {
+    .filter-sidebar::before {
+      content: "☰ Visa filter";
+      display: block;
+      padding: 12px 15px;
+      background-color: #f0f0f0;
+      text-align: center;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 10px;
+      border-radius: 4px;
+    }
+  
+    /* Dölj filterbehållaren initialt på mobil */
+    .filter-container {
+      display: none;
+    }
+  
+    /* När active-klassen läggs till via JS */
+    .filter-sidebar.active .filter-container {
+      display: block;
+    }
+  
+    .filter-sidebar.active::before {
+      content: "✕ Dölj filter";
+      background-color: #e0e0e0;
+    }
+}
+  
+/* ======================================
+   6. Direkta korrigeringar för filteralternativ
+   ====================================== */
+/* 
+   Dessa stilar löser specifika problem med checkbox-alignment i filtren.
+   Jag använder !important för att säkerställa att dessa stilar har högre prioritet
+   än eventuella motstridiga stilar från andra CSS-filer.
+   Detta var nödvändigt för att fixa layoutproblem på mobila enheter.
+*/
+@media only screen and (max-width: 768px) {
+    /* Rikta in alla filtergrupper */
+    .filter-group,
+    .filter-container > div {
+      margin-bottom: 15px;
+    }
+  
+    /* Korrigering för filterobjekten */
+    .filter-group li,
+    .filter-container li,
+    .filter-sidebar li {
+      display: flex !important;
+      align-items: center !important;
+      margin-bottom: 12px !important;
+      width: 100% !important;
+    }
+  
+    /* Korrigering för checkboxar */
+    .filter-group input[type="checkbox"],
+    .filter-container input[type="checkbox"],
+    .filter-sidebar input[type="checkbox"] {
+      margin-right: 12px !important;
+      min-width: 22px !important;
+      height: 22px !important;
+      flex: 0 0 auto !important;
+    }
+  
+    /* Korrigering för etiketter */
+    .filter-group label,
+    .filter-container label,
+    .filter-sidebar label {
+      flex: 1 !important;
+      text-align: left !important;
+      padding: 6px 0 !important;
+      font-size: 16px !important;
+    }
+  
+    /* Universell korrigering för alla filterobjekt */
+    .filter-sidebar input[type="checkbox"] + *,
+    .filter-container input[type="checkbox"] + * {
+      flex: 1 !important;
+      text-align: left !important;
+      margin-left: 12px !important;
+    }
+  
+    /* Korrigering för tabellbaserade layouter */
+    .filter-sidebar table,
+    .filter-sidebar tr,
+    .filter-sidebar td {
+      display: block !important;
+      width: 100% !important;
+    }
+  
+    .filter-sidebar td:first-child {
+      width: auto !important;
+      padding-right: 12px !important;
+    }
+  
+    /* Tvinga korrekt visning för alla kapslade element */
+    .filter-sidebar * {
+      max-width: 100% !important;
+    }
+  
+    /* Korrigering för filtergrupprubriker */
+    .filter-group h4,
+    .filter-container h4,
+    .filter-sidebar h3,
+    .filter-sidebar h4 {
+      background-color: #f5f5f5 !important;
+      padding: 12px 15px !important;
+      border-radius: 4px !important;
+      margin-bottom: 10px !important;
+      font-size: 16px !important;
+      position: relative !important;
+    }
+  
+    /* Korrigering för toggle-ikoner */
+    .toggle-icon,
+    .filter-group h4 span,
+    .filter-container h4 span {
+      position: absolute !important;
+      right: 15px !important;
+      top: 50% !important;
+      transform: translateY(-50%) !important;
+      font-weight: bold !important;
+    }
+  
+    /* Korrigering för knappen "Tillämpa filter" */
+    .apply-filters,
+    button[class*="filter"],
+    .filter-container button {
+      width: 100% !important;
+      padding: 12px !important;
+      font-size: 16px !important;
+      margin-top: 15px !important;
+      background-color: #00aa00 !important;
+      color: white !important;
+      border: none !important;
+      border-radius: 4px !important;
+      cursor: pointer !important;
+    }
+}

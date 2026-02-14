@@ -1,0 +1,646 @@
+/**
+ * TechStore - Kategorisidor Stilmall
+ *
+ * Den här filen innehåller alla grundläggande stilar för kategorisidorna på TechStore-webbplatsen.
+ * Designen följer webbplatsens övergripande färgschema och layout med fokus på produktvisning och filtrering.
+ * Jag har implementerat en responsiv design som anpassar sig till olika skärmstorlekar.
+ *
+ * Innehåll för att lättare hitta och navigera senare:
+ * 1. CSS-återställning och grundläggande stilar
+ * 2. Huvudlayout
+ * 3. Sidhuvud och navigation
+ * 4. Brödsmulor
+ * 5. Kategorisidans layout
+ * 6. Filtersidofält
+ * 7. Produktsektion och rutnät
+ * 8. Produktkort
+ * 9. Paginering
+ * 10. Sidfot
+ * 11. Responsiva justeringar
+ *
+ * Designbeslut:
+ * - Använder #00AA00 som primär accentfärg för knappar och länkar
+ * - Implementerar flexbox och grid för moderna, responsiva layouter
+ * - Skapar interaktiva element med hover-effekter för bättre användarupplevelse
+ * - Använder media queries för att anpassa layouten till olika skärmstorlekar
+ */
+
+/* ======================================
+   1. CSS-återställning och grundläggande stilar
+   ====================================== */
+/* 
+   Jag börjar med en CSS-återställning för att säkerställa konsekvent rendering
+   på alla webbläsare. Detta eliminerar standardmarginaler och padding.
+   Box-sizing: border-box gör storleksberäkningar mer intuitiva.
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+/* ======================================
+   2. Huvudlayout
+   ====================================== */
+/* 
+   Jag satte max-width till 1200px för att begränsa innehållets bredd på stora skärmar.
+   Detta förbättrar läsbarheten och ger en konsekvent upplevelse.
+   Flex: 1 på main-elementet säkerställer att sidfoten alltid hamnar längst ner.
+*/
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* ======================================
+   3. Sidhuvud och navigation
+   ====================================== */
+/* 
+   Jag designade sidhuvudet med en subtil skugga för att skapa djup.
+   Flexbox används för att placera logo, sökfält och användaråtgärder på en rad.
+   Sökfältet expanderar för att fylla tillgängligt utrymme med flex: 1.
+*/
+header {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo img {
+    height: 40px;
+}
+
+/* Logotypstyling */
+.logo-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
+.logo-highlight {
+    color: #00AA00;
+}
+
+.search-bar {
+    display: flex;
+    gap: 0.5rem;
+    flex: 1;
+    max-width: 500px;
+    margin: 0 2rem;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.search-bar button {
+    padding: 0.8rem 1.5rem;
+    background-color: #00AA00;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+    background-color: #008800;
+}
+
+/* Styling för användaråtgärder */
+.user-actions {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.user-actions a {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.user-actions a:hover {
+    color: #00AA00;
+}
+
+/* Navigation */
+.main-nav {
+    background-color: #f8f8f8;
+    padding: 1rem 0;
+}
+
+.main-nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #333;
+    padding: 0.5rem 1rem;
+}
+
+.main-nav a:hover {
+    color: #00AA00;
+}
+
+/* Mobilmenyknapp */
+.menu-btn {
+    display: none; /* Dölj som standard */
+}
+
+@media (max-width: 768px) {
+    .menu-btn {
+        display: block; /* Visa endast på mobil */
+    }
+}
+
+/* ======================================
+   4. Brödsmulor
+   ====================================== */
+/* 
+   Brödsmulor hjälper användare att navigera och förstå var de befinner sig.
+   Jag valde en subtil grå färg (#666) för att inte konkurrera med huvudinnehållet.
+   Länkar är gröna för att matcha webbplatsens färgschema.
+*/
+.breadcrumbs {
+    margin: 1.5rem 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.breadcrumbs a {
+    color: #00AA00;
+    text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline;
+}
+
+/* ======================================
+   5. Kategorisidans layout
+   ====================================== */
+/* 
+   Jag använde flexbox för att placera filtersidofältet och produktsektionen sida vid sida.
+   Gap på 2rem skapar tydlig separation mellan de två sektionerna.
+*/
+.category-content {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+/* ======================================
+   6. Filtersidofält
+   ====================================== */
+/* 
+   Filtersidofältet har en fast bredd på 250px och en ljusgrå bakgrund för kontrast.
+   Jag implementerade ihopfällbara filtergrupper med JavaScript-interaktion.
+   Varje filtergrupp har en tydlig rubrik och checkboxar för filtrering.
+*/
+.filter-sidebar {
+    width: 250px;
+    flex-shrink: 0;
+}
+
+.filter-container {
+    background-color: #f8f8f8;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.filter-container h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.filter-group {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+}
+
+.filter-group:last-child {
+    border-bottom: none;
+    margin-bottom: 1rem;
+}
+
+.filter-group h4 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #333;
+    cursor: pointer;
+}
+
+.toggle-icon {
+    font-weight: bold;
+}
+
+.filter-group ul {
+    list-style: none;
+}
+
+.filter-group ul.collapsed {
+    display: none;
+}
+
+.filter-group li {
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+}
+
+.filter-group input[type="checkbox"] {
+    margin-right: 0.75rem;
+}
+
+.filter-group label {
+    color: #555;
+    cursor: pointer;
+}
+
+.apply-filters {
+    background-color: #00AA00;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+}
+
+.apply-filters:hover {
+    background-color: #008800;
+}
+
+/* ======================================
+   7. Produktsektion och rutnät
+   ====================================== */
+/* 
+   Produktsektionen använder flex: 1 för att ta upp återstående utrymme.
+   Jag implementerade ett responsivt rutnät med CSS Grid för produktkorten.
+   minmax(220px, 1fr) gör att antalet kolumner anpassas automatiskt efter skärmstorlek.
+*/
+.product-section {
+    flex: 1;
+}
+
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.category-header h1 {
+    font-size: 1.8rem;
+    color: #333;
+    margin: 0;
+}
+
+.sort-options {
+    display: flex;
+    align-items: center;
+}
+
+.sort-options label {
+    margin-right: 0.75rem;
+    color: #666;
+}
+
+.sort-options select {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #333;
+}
+
+/* Produktrutnät för kategorisida */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* ======================================
+   8. Produktkort
+   ====================================== */
+/* 
+   Jag designade produktkorten med en subtil hover-effekt som lyfter kortet något.
+   Flexbox används för att säkerställa att knappen alltid hamnar längst ner.
+   Textbegränsning med -webkit-line-clamp säkerställer konsekvent höjd på korten.
+*/
+.product-card {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.product-card-content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.product-card h3 {
+    font-size: 1rem;
+    color: #333;
+    margin: 0 0 0.5rem 0;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-height: 1.3;
+    height: 2.6rem;
+}
+
+.product-description {
+    font-size: 0.85rem;
+    color: #666;
+    margin: 0 0 1rem 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-height: 1.4;
+    flex-grow: 1;
+}
+
+.product-price {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #00AA00;
+    margin: 0 0 1rem 0;
+}
+
+.add-to-cart {
+    background-color: #00AA00;
+    color: white;
+    border: none;
+    padding: 0.75rem 0;
+    font-size: 0.9rem;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 4px;
+}
+
+.add-to-cart:hover {
+    background-color: #008800;
+}
+
+/* ======================================
+   9. Paginering
+   ====================================== */
+/* 
+   Pagineringen använder flexbox för att placera resultatinfo och sidlänkar.
+   Aktiva sidor markeras med grön bakgrund för tydlig visuell feedback.
+   Hover-effekter på länkarna förbättrar interaktiviteten.
+*/
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.page-links {
+    display: flex;
+}
+
+.page-links a {
+    color: #333;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    margin: 0 0.25rem;
+    transition: all 0.3s ease;
+}
+
+.page-links a.active {
+    background-color: #00AA00;
+    color: white;
+    border: 1px solid #00AA00;
+}
+
+.page-links a:hover:not(.active) {
+    background-color: #f1f1f1;
+}
+
+/* ======================================
+   10. Sidfot
+   ====================================== */
+/* 
+   Sidfoten har mörk bakgrund (#333) för kontrast mot det vita innehållet.
+   CSS Grid används för att skapa en responsiv layout för sidfotssektionerna.
+   minmax(200px, 1fr) gör att antalet kolumner anpassas efter skärmstorlek.
+*/
+footer {
+    background-color: #333;
+    color: white;
+    padding: 2rem 0;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.category-header h1 {
+    width: 250px;
+    display: inline-block;
+}
+
+/* Komplett lösning för kategorirubrik */
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    margin-bottom: 20px;
+    width: 100%;
+}
+  
+.category-header h1 {
+    flex: 0 0 auto;
+    margin-right: 40px;
+    white-space: nowrap;
+}
+  
+.sort-options {
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
+.footer-section h3 {
+    margin-bottom: 1rem;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* Styling för sociala länkar */
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.social-link i {
+    font-size: 1.2rem;
+}
+
+/* ======================================
+   11. Responsiva justeringar
+   ====================================== */
+/* 
+   Jag implementerade tre brytpunkter för responsivitet:
+   - 992px: Ändrar layout från sida vid sida till kolumn
+   - 768px: Justerar padding, rubriker och produktrutnät
+   - 576px: Ytterligare justeringar för mycket små skärmar
+   
+   Detta säkerställer att sidan ser bra ut på alla enheter från desktop till mobil.
+*/
+@media (max-width: 992px) {
+    .category-content {
+        flex-direction: column;
+    }
+    
+    .filter-sidebar {
+        width: 100%;
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        padding: 0 1rem;
+    }
+    
+    .category-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .category-header h1 {
+        margin-bottom: 1rem;
+    }
+    
+    .sort-options {
+        width: 100%;
+    }
+    
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(45%, 1fr));
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 0.75rem;
+    }
+    
+    .pagination {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+    }
+    
+    .product-card img {
+        height: 140px;
+    }
+    
+    .product-card-content {
+        padding: 0.75rem;
+    }
+}

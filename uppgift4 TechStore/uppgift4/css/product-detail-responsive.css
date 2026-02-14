@@ -1,0 +1,212 @@
+/**
+ * TechStore - Produktdetaljsida Responsiv Stilmall
+ *
+ * Den här filen innehåller responsiva stilar specifikt för produktdetaljsidan på TechStore-webbplatsen.
+ * Den ska inkluderas efter huvudfilen product-detail.css för att säkerställa korrekt stilprioritering.
+ * Jag har implementerat flera specifika lösningar för att förbättra användarupplevelsen på mobila enheter.
+ *
+ * Innehåll för att lättare hitta och navigera senare:
+ * 1. Mobila stilar (upp till 768px)
+ *    - Produktdetaljlayout
+ *    - Brödsmulor
+ *    - Produktbilder
+ *    - Produktinformation
+ *    - Kvantitetsväljare
+ *    - Lägg i varukorg-knapp
+ *    - Produktflikar
+ * 2. Tablet-stilar (577px till 992px)
+ *
+ * Designbeslut:
+ * - Ändrar layout från sida vid sida till kolumn på mindre skärmar
+ * - Optimerar bildgalleri för touch-interaktion på mobil
+ * - Anpassar fliksystemet för bättre mobil användarupplevelse
+ * - Förbättrar kvantitetsväljaren för touch-interaktion
+ */
+
+/* ======================================
+   1. Mobila stilar (upp till 768px)
+   ====================================== */
+   @media only screen and (max-width: 768px) {
+    /* 
+       Produktdetaljlayout
+       Jag ändrade layouten från sida vid sida till kolumn på mobila enheter
+       för att maximera utrymmet för varje sektion och förbättra läsbarheten.
+       Gap på 1.5rem skapar tydlig separation mellan sektionerna.
+    */
+    .product-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  
+    /* 
+       Brödsmulor
+       Jag minskade padding och typsnittsstorlek för brödsmulorna på mobil
+       för att spara utrymme samtidigt som de förblir läsbara och användbara.
+    */
+    .breadcrumb {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+  
+    /* 
+       Produktbilder
+       På mobil tar bilderna full bredd för maximal synlighet.
+       Jag begränsade huvudbildens höjd för att säkerställa att den inte tar för mycket utrymme.
+       Miniatyrbilderna visas i en horisontell, scrollbar rad för enkel navigation.
+    */
+    .product-images {
+      width: 100%;
+    }
+  
+    .main-image {
+      max-height: 300px;
+    }
+  
+    .thumbnail-gallery {
+      display: flex;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      gap: 0.5rem;
+    }
+  
+    .thumbnail {
+      min-width: 60px;
+      height: 60px;
+      flex: 0 0 auto;
+    }
+  
+    /* 
+       Produktinformation
+       Produktinformationen tar full bredd på mobil.
+       Jag minskade rubriktypsnittsstorleken för bättre proportioner på mindre skärmar.
+    */
+    .product-info {
+      width: 100%;
+      gap: 1rem;
+    }
+  
+    .product-info h1 {
+      font-size: 1.5rem;
+    }
+  
+    /* 
+       Kvantitetsväljare
+       Jag ändrade kvantitetsväljaren från horisontell till vertikal layout på mobil.
+       Kontrollerna tar full bredd för att göra dem lättare att använda med fingrar.
+    */
+    .quantity-selector {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  
+    .quantity-controls {
+      width: 100%;
+    }
+  
+    #quantity {
+      flex: 1;
+      width: auto;
+    }
+  
+    .quantity-btn {
+      padding: 0.5rem 1rem;
+    }
+  
+    /* 
+       Lägg i varukorg-knapp
+       Knappen tar full bredd på mobil för att vara ett tydligt call-to-action
+       och vara lättare att trycka på med fingrar.
+    */
+    .add-to-cart-btn {
+      width: 100%;
+      padding: 1rem;
+    }
+  
+    /* 
+       Produktflikar
+       Jag designade om fliksystemet helt för mobil för att förbättra användbarheten.
+       Istället för horisontella flikar staplas de vertikalt som accordions.
+       Detta gör dem lättare att trycka på och ger mer utrymme för innehållet.
+    */
+    .tab-buttons {
+      flex-wrap: wrap;
+      gap: 0;
+      border-bottom: none;
+    }
+  
+    .tab-btn {
+      flex: 1 0 100%;
+      text-align: center;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-bottom: none;
+      border-radius: 4px 4px 0 0;
+      margin-bottom: 0;
+    }
+  
+    .tab-btn:last-child {
+      border-bottom: 1px solid #ddd;
+      border-radius: 0 0 4px 4px;
+    }
+  
+    .tab-btn.active {
+      background-color: #f8f8f8;
+    }
+  
+    .tab-btn.active::after {
+      display: none;
+    }
+  
+    .tab-content {
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-top: 1rem;
+    }
+  
+    .tab-panel h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+    }
+  
+    .specs-list li {
+      padding: 0.5rem 0;
+    }
+  }
+  
+  /* ======================================
+     2. Tablet-stilar (577px till 992px)
+     ====================================== */
+  /* 
+     På tablets behåller jag kolumnlayouten men med större mellanrum och bredare element.
+     Bilderna centreras för bättre balans, och flikarna får en mer flexibel layout.
+  */
+  @media only screen and (min-width: 577px) and (max-width: 992px) {
+    .product-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+  
+    .product-images {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+  
+    .product-info {
+      width: 100%;
+    }
+  
+    .tab-buttons {
+      flex-wrap: wrap;
+    }
+  
+    .tab-btn {
+      flex: 1;
+      min-width: 120px;
+      text-align: center;
+    }
+  }

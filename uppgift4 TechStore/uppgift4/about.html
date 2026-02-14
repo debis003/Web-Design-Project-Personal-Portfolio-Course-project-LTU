@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <!-- Viewport-meta för responsiv design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Om oss - TechStore</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/about.css">
+</head>
+
+<!--
+/**
+ * TechStore - Om oss
+ * 
+ * Denna fil implementerar "Om oss"-sidan för TechStore med responsiv design.
+ * Sidan presenterar företagets historia, värderingar och team i en strukturerad
+ * och visuellt tilltalande layout.
+ *
+ * Designbeslut:
+ * - Använder sektionsbaserad layout för att tydligt separera olika typer av innehåll
+ * - Implementerar en kombination av text och bilder för att skapa en engagerande presentation
+ * - Använder kort (cards) för att presentera värderingar och teammedlemmar på ett konsekvent sätt
+ * - Följer företagets färgschema med #00AA00 som accentfärg i logotypen
+ * - Använder grid och flexbox för responsiv layout av innehållssektioner
+ *
+ * Responsiva funktioner:
+ * - Hero-sektionen anpassar textstorlek baserat på skärmstorlek
+ * - Historia-sektionen ändras från sidoställd till stapellagd layout på mobila enheter
+ * - Värderingskorten ändras från 4-kolumns till 2-kolumns till 1-kolumns layout beroende på skärmstorlek
+ * - Teammedlemmarnas grid ändras från 4-kolumns till 2-kolumns till 1-kolumns layout
+ * - Bilder skalas proportionellt för att passa olika skärmstorlekar
+ *
+ * Tillgänglighet:
+ * - Semantiska HTML-element används för bättre skärmläsarstöd
+ * - Bilder har beskrivande alt-text
+ * - Färgkontrast följer WCAG-riktlinjer för läsbarhet
+ * - Hierarkisk rubrikstruktur för logisk innehållsnavigering
+ *
+ * Kopplade filer:
+ * - css/style.css: Grundläggande stilar för hela webbplatsen
+ * - css/responsive.css: Responsiva stilar för alla skärmstorlekar
+ * - css/about.css: Sidspecifika stilar för Om oss-sidan
+ * - js/main.js: Allmän JavaScript-funktionalitet
+ */
+-->
+
+
+<body>
+    <!-- 
+      Header-sektion
+      Samma struktur som på övriga sidor för konsekvent användarupplevelse.
+      Responsiv design med flexbox som omorganiseras på mindre skärmar.
+    -->
+    <header>
+        <!-- Header-innehåll (samma som på andra sidor) -->
+        <div class="header-top">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-text">Tech<span class="logo-highlight">Store</span></span>
+                </a>
+            </div>
+            <div class="search-bar">
+                <input type="search" placeholder="Sök produkter...">
+                <button type="submit">Sök</button>
+            </div>
+            <div class="user-actions">
+                <a href="#" class="account-link">
+                    &#128100;
+                    Mitt Konto
+                </a>
+                <a href="cart.html" class="cart-link">
+                    &#128722;
+                    Varukorg <span id="cart-count">(0)</span>
+                </a>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="datorer.html">Datorer & Tillbehör</a></li>
+                <li><a href="mobiltelefoner.html">Mobiltelefoner</a></li>
+                <li><a href="gaming.html">Gaming & Konsoler</a></li>
+                <li><a href="ljud.html">Ljud & Bild</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- 
+      Huvudinnehåll
+      Använder en container med max-bredd för bättre läsbarhet på stora skärmar
+      och full bredd med marginaler på mindre skärmar.
+    -->
+
+    <main class="about-container">
+        <!-- 
+          Hero-sektion
+          Stor rubrik och tagline som introducerar företaget.
+          Designad för att vara iögonfallande och sätta tonen för sidan.
+          På mobila enheter minskas textstorleken och padding för bättre anpassning.
+        -->
+        <section class="about-hero">
+            <h1>Om Tech Store</h1>
+            <p class="tagline">Din pålitliga teknikpartner sedan 2005</p>
+        </section>
+        <!-- 
+          Historia-sektion
+          Kombinerar bild och text i en flexibel layout.
+          På desktop visas bilden till vänster och texten till höger.
+          På mobila enheter staplas bilden ovanför texten.
+          Använder flexbox för responsiv layout-ändring.
+        -->
+
+        <section class="about-story">
+            <h2>Vår Historia</h2>
+            <div class="story-content">
+                <div class="story-image">
+                    <img src="images/store-front.jpg" alt="Tech Store Butik">
+                </div>
+                <div class="story-text">
+                    <p>Tech Store grundades 2005 med ett enkelt uppdrag: att tillhandahålla högkvalitativa teknikprodukter med exceptionell kundservice. Vad som började som en liten butik har vuxit till en av regionens mest betrodda teknikåterförsäljare.</p>
+                    <p>Vår resa började när vår grundare, en teknikentusiast, upptäckte en lucka på marknaden för en butik som inte bara sålde teknik utan hjälpte kunderna att förstå och få ut det mesta av sina inköp.</p>
+                </div>
+            </div>
+        </section>
+        <!-- 
+          Värderingar-sektion
+          Presenterar företagets kärnvärderingar i ett grid av kort.
+          Använder CSS grid som ändrar antal kolumner baserat på skärmstorlek:
+          - 4 kolumner på stor desktop
+          - 2 kolumner på surfplatta
+          - 1 kolumn på mobil
+          Korten har en subtil skuggeffekt och hover-effekt för interaktivitet.
+        -->
+
+        <section class="our-values">
+            <h2>Våra Värderingar</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <h3>Kvalitet</h3>
+                    <p>Vi väljer noggrant varje produkt i vårt sortiment för att säkerställa att vi endast erbjuder den bästa tillgängliga tekniken.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Expertis</h3>
+                    <p>Vårt team består av passionerade teknikexperter som håller sig uppdaterade med de senaste trenderna och innovationerna.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Kundfokus</h3>
+                    <p>Vi tror på att bygga långvariga relationer med våra kunder genom ärliga råd och pålitligt stöd.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Hållbarhet</h3>
+                    <p>Vi är engagerade i att minska vår miljöpåverkan genom återvinningsprogram och energieffektiva metoder.</p>
+                </div>
+            </div>
+        </section>
+        <!-- 
+          Team-sektion
+          Presenterar teammedlemmar i ett grid av kort med bild, namn och titel.
+          Använder samma responsiva grid-princip som värderingssektionen.
+          Bilderna är cirkulära för en modernare design och för att fokusera på ansikten.
+          På mobila enheter minskas bildstorleken och textstorleken justeras för bättre anpassning.
+        -->
+
+        <section class="team-section">
+            <h2>Möt Vårt Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="images/team-member1.jpg" alt="Teammedlem">
+                    <h3>Deborah Aittokallio</h3>
+                    <p>VD & Grundare</p>
+                </div>
+                <div class="team-member">
+                    <img src="images/team-member2.jpg" alt="Teammedlem">
+                    <h3>Deborah Aittokallio</h3>
+                    <p>Teknisk Direktör</p>
+                </div>
+                <div class="team-member">
+                    <img src="images/team-member3.jpg" alt="Teammedlem">
+                    <h3>Deborah Aittokallio</h3>
+                    <p>Kundtjänstchef</p>
+                </div>
+                <div class="team-member">
+                    <img src="images/team-member4.jpg" alt="Teammedlem">
+                    <h3>Deborah Aittokallio</h3>
+                    <p>Produktspecialist</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 
+      Footer
+      Samma struktur som på övriga sidor för konsekvent användarupplevelse.
+      Responsiv design med flexbox som ändras från rad till kolumn på mobila enheter.
+    -->
+    <footer>
+        <!-- Footer-innehåll (samma som på andra sidor) -->
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Om TechStore</h3>
+                <ul>
+                    <li><a href="about.html">Om oss</a></li>
+                    <li><a href="contact.html">Kontakta oss</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Följ oss</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i>&#128279; Facebook</a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i>&#128279; Twitter</a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i>&#128279; Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+<!-- JavaScript för allmän funktionalitet -->
+    <script src="js/main.js"></script>
+</body>
+</html>

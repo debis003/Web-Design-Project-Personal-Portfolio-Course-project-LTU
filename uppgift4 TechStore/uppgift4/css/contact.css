@@ -1,0 +1,226 @@
+/**
+ * TechStore - Kontaktsida Stilmall
+ *
+ * Den här filen innehåller alla stilar för kontaktsidan på TechStore-webbplatsen.
+ * Designen följer storyboard-riktlinjerna med fokus på användarvänlighet och tydlighet.
+ * Jag har implementerat en responsiv design som anpassar sig till olika skärmstorlekar.
+ *
+ * Innehåll för att lättare hitta och navigera senare:
+ * 1. Grundläggande sidinställningar
+ * 2. Kontaktbehållare och layout
+ * 3. Kontaktformulär
+ * 4. Formulärelement
+ * 5. Kontaktinformation
+ * 6. Responsiva justeringar
+ *
+ * Designbeslut:
+ * - Använder #0066cc som accentfärg för formulärelement istället för den plannerade #00AA00(från storyboard)
+ * - Implementerar flexbox för responsiv layout
+ * - Skapar tydlig visuell separation mellan formulär och kontaktinformation
+ * - Använder subtila skuggor och rundade hörn för djup och modernitet
+ */
+
+/* ======================================
+   1. Grundläggande sidinställningar
+   ====================================== */
+/* 
+   Jag säkerställer att sidfoten alltid hamnar längst ner på sidan
+   genom att använda flexbox på body-elementet och flex: 1 på main.
+   Detta löser problemet med "flytande" sidfot på sidor med lite innehåll.
+*/
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+/* ======================================
+   2. Kontaktbehållare och layout
+   ====================================== */
+/* 
+   Jag använder en max-width på 1200px för att begränsa innehållets bredd
+   på större skärmar, vilket förbättrar läsbarheten.
+   Flexbox används för att placera formulär och kontaktinfo sida vid sida.
+*/
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.contact-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin: 40px 0;
+    min-height: 500px; /* Säkerställer minsta höjd för innehållet */
+}
+
+/* ======================================
+   3. Kontaktformulär
+   ====================================== */
+/* 
+   Formulärsektionen tar upp hälften av utrymmet på större skärmar.
+   Min-width på 300px säkerställer att den inte blir för smal på mellanstora skärmar.
+   Ljusgrå bakgrund och subtil skugga skapar djup och separation från bakgrunden.
+*/
+.contact-form-section {
+    flex: 1;
+    min-width: 300px;
+}
+
+.contact-form-section h1 {
+    font-size: 2rem;
+    margin-bottom: 25px;
+    color: #333;
+    font-weight: 600;
+}
+
+.contact-form {
+    background-color: #f5f5f7;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* ======================================
+   4. Formulärelement
+   ====================================== */
+/* 
+   Jag designade formulärelement med fokus på användarvänlighet och tillgänglighet.
+   Tydliga etiketter, tillräcklig padding och visuell feedback vid fokus
+   förbättrar användarupplevelsen och gör formuläret lättare att använda.
+*/
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #0066cc;
+    box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+}
+
+.submit-btn {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    width: 100%;
+    font-weight: 500;
+}
+
+.submit-btn:hover {
+    background-color: #0055aa;
+}
+
+/* ======================================
+   5. Kontaktinformation
+   ====================================== */
+/* 
+   Kontaktinformationssektionen matchar formulärets stil för visuell konsekvens.
+   Jag strukturerade informationen i tydliga grupper med beskrivande rubriker
+   för att göra det lätt för användare att hitta den information de söker.
+*/
+.contact-info-section {
+    flex: 1;
+    min-width: 300px;
+}
+
+.contact-info-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    color: #333;
+    font-weight: 600;
+}
+
+.contact-info {
+    background-color: #f5f5f7;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.info-item {
+    margin-bottom: 20px;
+}
+
+.info-item h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: 600;
+}
+
+.info-item p {
+    color: #666;
+    margin-bottom: 5px;
+    line-height: 1.5;
+}
+
+/* ======================================
+   6. Responsiva justeringar
+   ====================================== */
+/* 
+   På mindre skärmar (max 768px) ändras layouten från två kolumner till en.
+   Jag minskade också typsnittsstorlekarna något för bättre anpassning.
+   På mycket små skärmar (max 480px) görs ytterligare justeringar för optimal visning.
+*/
+@media (max-width: 768px) {
+    .contact-content {
+        flex-direction: column;
+    }
+    
+    .contact-form-section h1 {
+        font-size: 1.8rem;
+    }
+    
+    .contact-info-section h2 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-form-section h1 {
+        font-size: 1.6rem;
+    }
+    
+    .contact-info-section h2 {
+        font-size: 1.4rem;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        padding: 10px;
+    }
+}

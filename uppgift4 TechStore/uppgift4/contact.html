@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <!-- Viewport-meta för responsiv design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakta oss - TechStore</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/contact.css">
+</head>
+
+<!--
+/**
+ * TechStore - Kontakta oss
+ * 
+ * Denna fil implementerar kontaktsidan för TechStore med responsiv design.
+ * Sidan innehåller ett kontaktformulär och företagets kontaktinformation
+ * i en tvåkolumnslayout som anpassas för olika skärmstorlekar.
+ *
+ * Designbeslut:
+ * - Använder en tvåkolumnslayout på desktop som omvandlas till enkelkolumn på mobil
+ * - Placerar kontaktformuläret till vänster och kontaktinformation till höger på desktop
+ * - Implementerar ett tydligt och användarvänligt formulär med etiketter ovanför fälten
+ * - Använder accentfärgen #0066cc för submit-knappen för att skapa visuell fokus
+ * - Strukturerar kontaktinformationen i tydliga sektioner för bättre läsbarhet
+ *
+ * Responsiva funktioner:
+ * - Tvåkolumnslayout på desktop ändras till enkelkolumn på mobila enheter
+ * - Formulärfält expanderar för att ta upp tillgänglig bredd på alla skärmstorlekar
+ * - Textarean för meddelande anpassar sin höjd baserat på skärmstorlek
+ * - Knappar och interaktiva element har tillräcklig storlek för touch på mobila enheter
+ * - Marginaler och padding justeras för optimal visning på olika skärmstorlekar
+ *
+ * Tillgänglighet:
+ * - Formulärelement har associerade etiketter för skärmläsare
+ * - Obligatoriska fält är markerade med required-attribut
+ * - Färgkontrast följer WCAG-riktlinjer för läsbarhet
+ * - Formuläret kan navigeras med tangentbord
+ * - Felmeddelanden visas tydligt vid valideringsfel
+ *
+ * Kopplade filer:
+ * - css/style.css: Grundläggande stilar för hela webbplatsen
+ * - css/responsive.css: Responsiva stilar för alla skärmstorlekar
+ * - css/contact.css: Sidspecifika stilar för kontaktsidan
+ * - js/main.js: Allmän JavaScript-funktionalitet
+ * - js/products.js: Produktrelaterad JavaScript-funktionalitet
+ * - js/responsive.js: JavaScript för responsiv funktionalitet
+ */
+-->
+
+
+<body>
+    <!-- 
+      Header-sektion
+      Samma struktur som på övriga sidor för konsekvent användarupplevelse.
+      Responsiv design med flexbox som omorganiseras på mindre skärmar.
+    -->
+    <header>
+        <!-- Header-innehåll (samma som på andra sidor) -->
+        <div class="header-top">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-text">Tech<span class="logo-highlight">Store</span></span>
+                </a>
+            </div>
+            <div class="search-bar">
+                <input type="search" placeholder="Sök produkter...">
+                <button type="submit">Sök</button>
+            </div>
+            <div class="user-actions">
+                <a href="#" class="account-link">
+                    &#128100;
+                    Mitt Konto
+                </a>
+                <a href="cart.html" class="cart-link">
+                    &#128722;
+                    Varukorg <span id="cart-count">(0)</span>
+                </a>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="datorer.html">Datorer & Tillbehör</a></li>
+                <li><a href="mobiltelefoner.html">Mobiltelefoner</a></li>
+                <li><a href="gaming.html">Gaming & Konsoler</a></li>
+                <li><a href="ljud.html">Ljud & Bild</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- 
+      Huvudinnehåll
+      Kontaktsidan använder en container med max-bredd för bättre läsbarhet
+      och centrering på stora skärmar.
+    -->
+
+    <main>
+        <div class="contact-container">
+            <div class="contact-content">
+                <!-- 
+                  Kontaktformulär-sektion
+                  Placeras till vänster på desktop och överst på mobil.
+                  Formuläret använder en vertikal layout med etiketter ovanför fälten
+                  för bättre läsbarhet och användarvänlighet.
+                -->
+                <div class="contact-form-section">
+                    <h1>Kontakta oss</h1>
+                    <form id="contactForm" class="contact-form">
+                        <!-- 
+                          Formulärgrupper
+                          Varje fält är inkapslat i en form-group för konsekvent styling
+                          och spacing. Etiketter är kopplade till sina respektive fält
+                          med for-attribut för tillgänglighet.
+                        -->
+                        <div class="form-group">
+                            <label for="name">Namn</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-post</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Meddelande</label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                        </div>
+                        <!-- 
+                          Submit-knapp
+                          Använder accentfärgen #0066cc för att skapa visuell fokus.
+                          Knappen har tillräcklig storlek för att vara touch-vänlig på mobila enheter.
+                        -->
+                        <button type="submit" class="submit-btn">Skicka</button>
+                    </form>
+                </div>
+                <!-- 
+                  Kontaktinformation-sektion
+                  Placeras till höger på desktop och nederst på mobil.
+                  Innehåller företagets kontaktuppgifter strukturerade i tydliga sektioner.
+                -->
+                
+                <div class="contact-info-section">
+                    <h2>Kontaktinformation</h2>
+                    <div class="contact-info">
+                        <!-- 
+                          Informationsobjekt
+                          Varje typ av kontaktinformation är grupperad i ett eget objekt
+                          med en rubrik för tydlig struktur och läsbarhet.
+                        -->
+                        <div class="info-item">
+                            <h3>Adress</h3>
+                            <p>123 Tech Street</p>
+                            <p>Stockholm, 10044</p>
+                            <p>Sverige</p>
+                        </div>
+                        <div class="info-item">
+                            <h3>Telefon</h3>
+                            <p>Kundtjänst: +46 123 456 789</p>
+                            <p>Teknisk Support: +46 123 456 790</p>
+                        </div>
+                        <div class="info-item">
+                            <h3>E-post</h3>
+                            <p>info@techstore.com</p>
+                            <p>support@techstore.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 
+      Footer
+      Samma struktur som på övriga sidor för konsekvent användarupplevelse.
+      Responsiv design med flexbox som ändras från rad till kolumn på mobila enheter.
+    -->
+    <footer>
+        <!-- Footer-innehåll (samma som på andra sidor) -->
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Om TechStore</h3>
+                <ul>
+                    <li><a href="about.html">Om oss</a></li>
+                    <li><a href="contact.html">Kontakta oss</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Följ oss</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i>&#128279; Facebook</a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i>&#128279; Twitter</a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i>&#128279; Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+   
+    <!-- JavaScript-filer i korrekt ordning -->
+    <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/responsive.js"></script> 
+   
+</body>
+</html>

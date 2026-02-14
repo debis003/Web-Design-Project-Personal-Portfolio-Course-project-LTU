@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <!-- Viewport-meta för responsiv design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produktdetalj - TeachStore</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/product-detail.css">
+    <!-- Responsiva stilar -->
+    <link rel="stylesheet" href="../css/responsive.css">  
+    <link rel="stylesheet" href="../css/product-detail-responsive.css"> 
+    
+
+</head>
+
+<!--
+/**
+ * TechStore - Produktdetaljsida
+ * 
+ * Denna fil implementerar produktdetaljsidan för TechStore med responsiv design.
+ * Sidan visar detaljerad information om en specifik produkt, inklusive bilder,
+ * pris, specifikationer och möjlighet att lägga till produkten i varukorgen.
+ *
+ * Designbeslut:
+ * - Använder en tvåkolumnslayout på desktop som omvandlas till enkelkolumn på mobil
+ * - Placerar produktbilder till vänster och produktinformation till höger på desktop
+ * - Implementerar en miniatyrgalleri för att visa flera produktbilder
+ * - Använder flikar för att organisera produktinformation, specifikationer och recensioner
+ * - Inkluderar en kvantitetsväljare för att justera antal produkter att köpa
+ * - Följer företagets färgschema med #00AA00 som accentfärg i logotypen
+ *
+ * Responsiva funktioner:
+ * - Tvåkolumnslayout på desktop ändras till enkelkolumn på mobila enheter
+ * - Bildgalleriet anpassas för olika skärmstorlekar med mindre miniatyrbilder på mobil
+ * - Fliksystemet ändras från horisontellt till vertikalt på mobila enheter
+ * - Kvantitetsväljaren och köpknappen expanderar för att ta upp tillgänglig bredd på mobil
+ * - Brödsmulor (breadcrumbs) anpassas för bättre läsbarhet på små skärmar
+ *
+ * Tillgänglighet:
+ * - Semantiska HTML-element används för bättre skärmläsarstöd
+ * - Bilder har beskrivande alt-text
+ * - Färgkontrast följer WCAG-riktlinjer för läsbarhet
+ * - Interaktiva element har tillräcklig storlek för touch på mobila enheter
+ * - Flikar är implementerade med korrekt ARIA-attribut för tillgänglighet
+ *
+ * Kopplade filer:
+ * - css/style.css: Grundläggande stilar för hela webbplatsen
+ * - css/product-detail.css: Sidspecifika stilar för produktdetaljsidan
+ * - css/responsive.css: Allmänna responsiva stilar
+ * - css/product-detail-responsive.css: Responsiva stilar specifika för produktdetaljsidan
+ * - js/product-detail.js: JavaScript för produktdetaljsidans funktionalitet
+ *
+-->
+
+
+<body>
+    <header>
+        <!-- 
+      Header-sektion
+      Liknande struktur som på övriga sidor för konsekvent användarupplevelse.
+      Responsiv design med flexbox som omorganiseras på mindre skärmar.
+    -->
+        <div class="header-top">
+            <!-- Header-innehåll (liknande som på andra sidor) -->
+            <a href="../index.html" class="logo-text">
+                <span>Tech</span><span class="logo-highlight">Store</span>
+            </a>
+            <div class="search-bar">
+                <input type="text" placeholder="Sök produkter...">
+                <button type="button">Sök</button>
+            </div>
+            <div class="user-actions">
+                <a href="#"><i class="fas fa-user"></i> Mitt konto</a>
+                <a href="#"><i class="fas fa-shopping-cart"></i> Varukorg</a>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Hem</a></li>
+                <li><a href="datorer.html">Datorer & Tillbehör</a></li>
+                <li><a href="mobil.html" class="active">Mobiltelefoner</a></li>
+                <li><a href="gaming.html">Gaming & Konsoler</a></li>
+                <li><a href="ljud.html">Ljud & Bild</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- 
+      Huvudinnehåll
+      Använder en container med max-bredd för bättre läsbarhet på stora skärmar.
+    -->
+
+    <main class="product-detail-container">
+        <!-- 
+          Brödsmulor (Breadcrumb)
+          Hjälper användaren att navigera tillbaka i webbplatsens hierarki.
+          Visar den aktuella sökvägen: Hem > Kategori > Produkt.
+          På mobila enheter minskas textstorleken och padding för bättre anpassning.
+        -->
+        <nav class="breadcrumb">
+            <ul>
+                <li><a href="../index.html">Hem</a></li>
+                <li><a href="../datorer.html">Datorer & Tillbehör</a></li>
+                <li>MacBook Pro M2</li>
+            </ul>
+        </nav>
+        <!-- 
+          Produktdetalj-sektion
+          Huvudinnehållet med produktbilder och information.
+          Använder flexbox för layout som ändras från rad till kolumn på mobila enheter.
+        -->
+        <div class="product-detail">
+            <!-- 
+              Produktbilder
+              Innehåller en stor huvudbild och en rad med miniatyrbilder.
+              På desktop visas bilderna till vänster.
+              På mobil visas bilderna överst och tar upp full bredd.
+            -->
+      
+            <div class="product-images">
+                <div class="main-image">
+                    <img src="/placeholder.svg?height=500&width=500" alt="MacBook Pro M2" id="mainImage">
+                </div>
+                <div class="thumbnail-gallery">
+                    <img src="/placeholder.svg?height=100&width=100" alt="MacBook Pro M2 view 1" class="thumbnail active">
+                    <img src="/placeholder.svg?height=100&width=100" alt="MacBook Pro M2 view 2" class="thumbnail">
+                    <img src="/placeholder.svg?height=100&width=100" alt="MacBook Pro M2 view 3" class="thumbnail">
+                </div>
+            </div>
+
+            <!-- 
+              Produktinformation
+              Innehåller produkttitel, pris, lagerstatus, kvantitetsväljare och köpknapp.
+              På desktop visas informationen till höger.
+              På mobil visas informationen under bilderna och tar upp full bredd.
+            -->
+            <div class="product-info">
+                <h1>MacBook Pro M2</h1>
+                <!-- 
+                  Priscontainer
+                  Visar aktuellt pris och eventuellt tidigare pris.
+                  Använder olika stilar för att framhäva rabatterade priser.
+                -->
+                <div class="price-container">
+                    <p class="product-price sale-price">19999kr</p>
+                    <p class="original-price">Tidigare lägsta pris: 22999kr</p>
+                </div>
+                <!-- 
+                  Lagerstatus
+                  Visar om produkten finns i lager med visuell indikation.
+                -->
+                <div class="stock-status">
+                    <span class="in-stock">I lager</span>
+                </div>
+                <!-- 
+                  Kvantitetsväljare
+                  Låter användaren välja antal produkter att köpa.
+                  Innehåller knappar för att öka/minska antal och ett inputfält.
+                  På mobil expanderar kontrollen för att ta upp mer bredd.
+                -->
+                <div class="quantity-selector">
+                    <label for="quantity">Antal:</label>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" id="decreaseQuantity">-</button>
+                        <input type="number" id="quantity" value="1" min="1" max="99">
+                        <button class="quantity-btn" id="increaseQuantity">+</button>
+                    </div>
+                </div>
+                <!-- 
+                  Köpknapp
+                  Stor, tydlig knapp för att lägga till produkten i varukorgen.
+                  Använder accentfärg för att skapa visuell fokus.
+                  På mobil expanderar knappen för att ta upp full bredd.
+                -->
+                
+                <button class="add-to-cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    Lägg i varukorg
+                </button>
+            </div>
+        </div>
+
+        <!-- 
+          Produktflikar
+          Organiserar ytterligare produktinformation i flikar för bättre användbarhet.
+          Innehåller flikar för produktinformation, specifikationer och recensioner.
+          På desktop visas flikarna horisontellt.
+          På mobil omvandlas flikarna till en vertikal accordion-liknande layout.
+        -->
+        <div class="product-tabs">
+            <!-- 
+              Flikknappar
+              Knappar för att växla mellan olika innehållspaneler.
+              Använder data-attribut för att koppla knappar till paneler.
+              JavaScript hanterar aktiva tillstånd och panelvisning.
+            -->
+            <div class="tab-buttons">
+                <button class="tab-btn active" data-tab="info">Produktinformation</button>
+                <button class="tab-btn" data-tab="specs">Specifikationer</button>
+                <button class="tab-btn" data-tab="reviews">Recensioner</button>
+            </div>
+            <!-- 
+              Flikinnehåll
+              Container för alla innehållspaneler.
+              Endast en panel visas åt gången baserat på vald flik.
+            -->
+            <div class="tab-content">
+                <!-- Produktinformationspanel -->
+                <div class="tab-panel active" id="info">
+                    <h2>Produktinformation</h2>
+                    <p>Kraftfull laptop för professionellt bruk med den senaste M2-processorn från Apple. Perfekt för kreativt arbete och krävande uppgifter.</p>
+                </div>
+                <!-- Specifikationspanel -->
+                <div class="tab-panel" id="specs">
+                    <h2>Specifikationer</h2>
+                    <ul class="specs-list">
+                        <li><strong>Processor:</strong> Apple M2</li>
+                        <li><strong>RAM:</strong> 16GB</li>
+                        <li><strong>Lagring:</strong> 512GB SSD</li>
+                        <li><strong>Skärm:</strong> 14" Retina display</li>
+                    </ul>
+                </div>
+                <!-- Recensionspanel -->
+                <div class="tab-panel" id="reviews">
+                    <h2>Recensioner</h2>
+                    <p>Inga recensioner ännu.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 
+      Footer
+      Samma struktur som på övriga sidor för konsekvent användarupplevelse.
+      Responsiv design med flexbox som ändras från rad till kolumn på mobila enheter.
+    -->
+    <footer>
+        <!-- Footer-innehåll (samma som på andra sidor) -->
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Om TechStore</h3>
+                <ul>
+                    <li><a href="about.html">Om oss</a></li>
+                    <li><a href="contact.html">Kontakta oss</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Följ oss</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i>&#128279; Facebook</a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i>&#128279; Twitter</a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i>&#128279; Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript för produktdetaljsidans funktionalitet -->
+    <script type="module" src="../js/product-detail.js"></script>
+        <!-- JavaScript för responsiv funktionalitet -->
+        <script src="js/responsive.js"></script>
+</body>
+</html>

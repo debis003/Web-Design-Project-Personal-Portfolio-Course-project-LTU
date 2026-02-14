@@ -1,0 +1,259 @@
+/**
+ * TechStore - Om oss-sida
+ *
+ * Den här filen innehåller alla stilar för Om oss-sidan på TechStore-webbplatsen.
+ * Designen följer storyboard-riktlinjerna och använder flexbox och grid för responsiv layout.
+ * Jag har lagt till kommentarer för att förklara designbeslut och implementeringsdetaljer.
+ *
+ * Innehåll för att lättare hitta och navigera senare:
+ * 1. Grundläggande container-inställningar
+ * 2. Hero-sektion
+ * 3. Vår berättelse-sektion
+ * 4. Våra värderingar
+ * 5. Team-sektion
+ * 6. Responsiva justeringar
+ *
+ * Designbeslut:
+ * - Använder flexbox för story-content för att skapa en sida-vid-sida-layout som staplas på mobil
+ * - Använder grid för values-grid och team-grid för att skapa responsiva rutnät
+ * - Konsekvent färgschema med #0066cc som accentfärg (från storyboard)
+ * - Hover-effekter på kort för bättre användarinteraktion
+ * - Responsiva typsnittsstorlekar för olika skärmstorlekar
+ */
+
+/* ======================================
+   1. Grundläggande container-inställningar
+   ====================================== */
+/* 
+   Jag valde att använda en max-width på 1200px för att begränsa innehållet 
+   på större skärmar och förbättra läsbarheten. Padding på 20px säkerställer 
+   att innehållet inte ligger för nära skärmkanterna.
+*/
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ======================================
+   2. Hero-sektion
+   ====================================== */
+/* 
+   Hero-sektionen är centrerad med stor rubrik för att fånga uppmärksamhet.
+   Ljusgrå bakgrund (#f5f5f7) skapar kontrast mot det vita innehållet.
+   Padding på 60px ger gott om utrymme och skapar en luftig känsla.
+*/
+.about-hero {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 60px 0;
+    background-color: #f5f5f7;
+    border-radius: 0;
+}
+
+.about-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: #333;
+    font-weight: 600;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+/* ======================================
+   3. Vår berättelse-sektion
+   ====================================== */
+/* 
+   Jag använde flexbox för story-content för att placera bild och text sida vid sida.
+   Min-width på 300px säkerställer att elementen inte blir för smala.
+   Gap på 30px skapar tydlig separation mellan bild och text.
+*/
+.about-story {
+    margin-bottom: 50px;
+}
+
+.about-story h2, .our-values h2, .team-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    color: #333;
+    text-align: center;
+    position: relative;
+    font-weight: 600;
+}
+
+/* 
+   Jag skapade en dekorativ linje under rubrikerna med pseudo-element.
+   Detta ger en konsekvent visuell identitet genom hela sidan.
+   Färgen #0066cc matchar varumärkets färg från storyboard.
+*/
+.about-story h2:after, .our-values h2:after, .team-section h2:after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: #0066cc; /* Matchar varumärkesfärgen från storyboard */
+    margin: 15px auto 0;
+}
+
+.story-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 30px;
+}
+
+.story-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.story-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.story-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.story-text p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* ======================================
+   4. Våra värderingar
+   ====================================== */
+/* 
+   Jag valde CSS Grid för values-grid för att skapa ett responsivt rutnät.
+   minmax(250px, 1fr) gör att korten automatiskt anpassar sig efter skärmstorlek.
+   Hover-effekten ger en subtil interaktion som förbättrar användarupplevelsen.
+*/
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.value-card {
+    background-color: #f5f5f7;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+}
+
+.value-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #333;
+    font-weight: 600;
+}
+
+.value-card p {
+    color: #666;
+    line-height: 1.5;
+}
+
+/* ======================================
+   5. Team-sektion
+   ====================================== */
+/* 
+   Team-sektionen använder också CSS Grid med liknande struktur som values-grid.
+   Cirkulära bilder (border-radius: 50%) skapar en modern och personlig känsla.
+   Hover-effekten är konsekvent med value-card för enhetlig användarupplevelse.
+*/
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.team-member {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.team-member h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: 600;
+}
+
+.team-member p {
+    color: #666;
+}
+
+/* ======================================
+   6. Responsiva justeringar
+   ====================================== */
+/* 
+   För tablets (max 768px) ändras story-content till kolumnlayout.
+   Detta gör att bild och text staplas istället för att visas sida vid sida.
+   Jag minskade också padding och typsnittsstorlekar för bättre anpassning.
+*/
+@media (max-width: 768px) {
+    .story-content {
+        flex-direction: column;
+    }
+    
+    .about-hero {
+        padding: 40px 0;
+    }
+    
+    .about-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .team-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+}
+
+/* 
+   För mobiler (max 480px) minskas typsnittsstorlekar och bildstorlekar ytterligare.
+   Detta säkerställer att innehållet är läsbart och snyggt på små skärmar.
+*/
+@media (max-width: 480px) {
+    .about-hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .tagline {
+        font-size: 1rem;
+    }
+    
+    .team-member img {
+        width: 120px;
+        height: 120px;
+    }
+}

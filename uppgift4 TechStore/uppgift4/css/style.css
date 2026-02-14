@@ -1,0 +1,584 @@
+/**
+ * TechStore - Huvudsaklig Stilmall
+ *
+ * Den här filen innehåller alla grundläggande stilar för TechStore-webbplatsen.
+ * Den definierar färgschema, typografi, layout och komponentstilar.
+ * 
+ * Innehåll:
+ * 1. Reset och grundstilar
+ * 2. Sidhuvud och navigation
+ * 3. Hero-banner
+ * 4. Produktkort och rutnät
+ * 5. Sidfot
+ * 6. Responsiva hjälpklasser
+ *
+ * Färgschema:
+ * - Primär: #00AA00 (grön)
+ * - Sekundär: #333333 (mörkgrå)
+ * - Bakgrund: #FFFFFF (vit)
+ * - Text: #333333 (mörkgrå)
+ * - Accentfärg: #FF0000 (röd, för reapris)
+ */
+
+/* ======================================
+   1. Reset och grundstilar
+   ====================================== */
+/* 
+   Jag använder en enkel reset för att ta bort standardmarginaler och padding,
+   och sätta box-sizing till border-box för alla element.
+   Detta ger mig en konsekvent grund att bygga på.
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* ======================================
+   2. Sidhuvud och navigation
+   ====================================== */
+/* 
+   Sidhuvudet är uppdelat i två delar: 
+   1. header-top med logotyp, sökfält och användaråtgärder
+   2. main-nav med huvudnavigeringen
+   
+   Jag använder flexbox för att skapa en responsiv layout som
+   fungerar bra på både desktop och mobila enheter.
+*/
+header {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo img {
+    height: 40px;
+}
+
+/* Logotypstyling */
+.logo-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
+.logo-highlight {
+    color: #00AA00;
+}
+
+.search-bar {
+    display: flex;
+    gap: 0.5rem;
+    flex: 1;
+    max-width: 500px;
+    margin: 0 2rem;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.search-bar button {
+    padding: 0.8rem 1.5rem;
+    background-color: #00AA00;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+    background-color: #008800;
+}
+
+/* Användaråtgärdsstyling */
+.user-actions {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.user-actions a {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.user-actions a:hover {
+    color: #00AA00;
+}
+
+/* Navigation */
+.main-nav {
+    background-color: #f8f8f8;
+    padding: 1rem 0;
+}
+
+.main-nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #333;
+    padding: 0.5rem 1rem;
+}
+
+.main-nav a:hover {
+    color: #00AA00;
+}
+
+/* Mobilmenyknapp */
+.menu-btn {
+    display: none; /* Dölj som standard */
+}
+
+@media (max-width: 768px) {
+    .menu-btn {
+        display: block; /* Visa endast på mobil */
+    }
+}
+
+/* ======================================
+   3. Hero-banner
+   ====================================== */
+/* 
+   Hero-bannern är en framträdande sektion högst upp på startsidan.
+   Jag använder en subtil animation för att skapa en engagerande upplevelse
+   när sidan laddas. Färgschemat matchar varumärkets identitet.
+*/
+.hero-banner {
+    background-color: rgba(0, 170, 0, 0.1); /* Mycket ljusgrön, använder varumärkets gröna färg men med låg opacitet */
+    position: relative;
+    padding: 6rem 2rem;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0, 170, 0, 0.1);
+}
+
+.banner-content {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-banner h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+/* Matcha logotypstylingen */
+.banner-tech {
+    color: #333; /* Mörk färg för "Tech" */
+}
+
+.banner-store {
+    color: #00AA00; /* Varumärkets gröna för "Store" */
+}
+
+.hero-banner p {
+    font-size: 1.25rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Behåll den subtila animationen */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.banner-content h1,
+.banner-content p {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.banner-content p {
+    animation-delay: 0.2s;
+}
+
+/* ======================================
+   4. Produktkort och rutnät
+   ====================================== */
+/* 
+   Produktkorten är en central del av webbplatsen. Jag har designat dem
+   för att vara visuellt tilltalande med hover-effekter och tydlig information.
+   Rutnätet är responsivt och anpassar sig till olika skärmstorlekar.
+*/
+/* Utvalda produkter */
+.featured-products {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    position: relative;
+}
+
+/* Sektionsrubrik */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+/* Scrollkontroller */
+.scroll-controls {
+    display: flex;
+    gap: 0.5rem;
+    
+}
+
+.scroll-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    background: white; /*Scroller button color här*/
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.scroll-btn:hover:not(:disabled) {
+    background: #f5f5f5; /*hover color här*/
+    border-color: #ccc;
+}
+
+.scroll-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: #f5f5f5;
+}
+
+/* Scrollbehållare */
+.scroll-container {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE och Edge */
+}
+
+.scroll-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.product-grid {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0.5rem 0;
+}
+
+/* Produktkort */
+.product-card {
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex: 0 0 280px;
+    min-width: 280px;
+    text-decoration: none; 
+    color: inherit; 
+}
+
+/* Lade till detta för att förhindra att knappklick navigerar */
+.add-to-cart-btn {
+    position: relative;
+    z-index: 1;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Produktbild */
+.product-image-container {
+    position: relative;
+    padding-top: 65%; /* 4:3 Bildförhållande */
+    background: #f8f8f8;
+    overflow: hidden;
+}
+
+.product-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 1rem;
+    transition: transform 0.3s ease;
+    background: #f5f5f5;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+/* Produktinformation */
+.product-info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+    min-height: 0;
+}
+
+.product-title {
+    font-size: 1.1rem;
+    color: #333;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 2.75rem;
+}
+
+.product-description {
+    font-size: 0.875rem;
+    color: #666;
+    margin: 0.25rem 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 2.5rem;
+}
+
+/* Produktpris */
+.price-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin: 0.75rem 0;
+    margin-top: auto;
+    min-height: 3.5rem; /* fast höjd för att rymma båda priserna */
+}
+
+.product-price {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #00AA00;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.product-price.sale-price {
+    color: #FF0000;
+}
+
+.original-price {
+    font-size: 0.875rem;
+    color: #666;
+    text-decoration: line-through;
+    margin: 0;
+    line-height: 1.2;
+    min-height: 1rem; /* Säkerställ att utrymme reserveras även när det inte finns något originalpris */
+}
+
+/* Lägg i varukorg-knapp */
+.add-to-cart-btn {
+    background-color: #00AA00;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    width: 100%;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #008800;
+}
+
+.add-to-cart-btn i {
+    font-size: 1.1rem;
+}
+
+/* ======================================
+   5. Sidfot
+   ====================================== */
+/* 
+   Sidfoten innehåller viktig information och länkar.
+   Jag använder en mörk bakgrund för kontrast mot resten av sidan,
+   och ett rutnät för att organisera innehållet på ett responsivt sätt.
+*/
+footer {
+    background-color: #333;
+    color: white; /* Textfärg för "Om TeachStore text och Följ oss text" */
+    padding: 2rem 0;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.footer-section h3 {
+    margin-bottom: 1rem;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* Sociala länkar-styling */
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.social-link i {
+    font-size: 1.2rem;
+}
+
+/* ======================================
+   6. Responsiva hjälpklasser
+   ====================================== */
+/* 
+   Dessa klasser hjälper till att skapa responsiva layouter
+   utan att behöva skriva media queries för varje element.
+   De kan användas för att snabbt justera layouter på olika skärmstorlekar.
+*/
+/* Basbehållare för konsekvent mellanrum */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Flexibla layoutverktyg */
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.align-center {
+    align-items: center;
+}
+
+/* Rutnätslayout för produkter */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* Responsiv textstorlek */
+h1 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+}
+
+h2 {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+}
+
+h3 {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+}
+
+p,
+li,
+a {
+    font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+/* Responsivt mellanrum */
+.section {
+    padding: clamp(20px, 5vw, 50px) 0;
+}
+
+/* Responsiva knappar */
+.btn {
+    padding: clamp(8px, 2vw, 12px) clamp(15px, 3vw, 25px);
+}
+
+/* Responsiva formulärelement */
+input,
+textarea,
+select {
+    padding: clamp(8px, 1.5vw, 12px);
+    font-size: clamp(0.9rem, 2vw, 1rem);
+}

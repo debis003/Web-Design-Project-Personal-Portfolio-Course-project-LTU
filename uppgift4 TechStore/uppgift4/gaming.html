@@ -1,0 +1,288 @@
+
+<!--
+/**
+ * TechStore - Kategori: Gaming & Konsoler
+ * 
+ * Denna fil följer samma struktur och responsiva design som datorer.html,
+ * men med innehåll anpassat för gaming-kategorin.
+ *
+ * Specifika anpassningar:
+ * - Filteralternativen är anpassade för gaming-produkter (konsoler, spel, kontroller, etc.)
+ * - Prisintervallen är justerade för att passa gaming-produkternas prisnivåer
+ * - Produkterna visar gaming-relaterade artiklar
+ * 
+ * I övrigt följer sidan samma responsiva designprinciper och struktur
+ * som beskrivs i dokumentationen för datorer.html.
+ */
+-->
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <!-- Viewport-meta för responsiv design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming & Konsoler - Tech Store</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/category.css">
+    <!-- Responsiva stilar -->
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Header-sektion -->
+    <header>
+        <div class="header-top">
+            <div class="logo">
+                <a href="index.html" class="logo-text">Tech<span class="logo-highlight">Store</span></a>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Sök produkter...">
+                <button type="submit">Sök</button>
+            </div>
+            <div class="user-actions">
+                <a href="#" class="account-link"> &#128100; Mitt Konto</a>
+                <a href="#" class="cart-link">&#128722; Varukorg <span class="cart-count">(0)</span></a>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Hem</a></li>
+                <li><a href="datorer.html">Datorer & Tillbehör</a></li>
+                <li><a href="mobil.html">Mobiltelefoner</a></li>
+                <li><a href="gaming.html" class="active">Gaming & Konsoler</a></li>
+                <li><a href="ljud.html">Ljud & Bild</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="breadcrumbs">
+            <a href="index.html">Hem</a> > Gaming & Konsoler
+        </div>
+        
+        <div class="category-content">
+            <aside class="filter-sidebar">
+                <div class="filter-container">
+                    <h3>Filtrera produkter</h3>
+                    
+                    <div class="filter-group">
+                        <h4>Kategori <span class="toggle-icon">-</span></h4>
+                        <ul>
+                            <li>
+                                <input type="checkbox" id="consoles" name="category" value="consoles">
+                                <label for="consoles">Spelkonsoler</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="games" name="category" value="games">
+                                <label for="games">Spel</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="controllers" name="category" value="controllers">
+                                <label for="controllers">Kontroller</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="accessories" name="category" value="accessories">
+                                <label for="accessories">Tillbehör</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="vr" name="category" value="vr">
+                                <label for="vr">VR</label>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h4>Plattform <span class="toggle-icon">+</span></h4>
+                        <ul class="collapsed">
+                            <li>
+                                <input type="checkbox" id="playstation" name="platform" value="playstation">
+                                <label for="playstation">PlayStation</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="xbox" name="platform" value="xbox">
+                                <label for="xbox">Xbox</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="nintendo" name="platform" value="nintendo">
+                                <label for="nintendo">Nintendo</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="pc" name="platform" value="pc">
+                                <label for="pc">PC</label>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h4>Prisintervall <span class="toggle-icon">+</span></h4>
+                        <ul class="collapsed">
+                            <li>
+                                <input type="checkbox" id="price1" name="price" value="0-500">
+                                <label for="price1">0 - 500 kr</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="price2" name="price" value="500-1000">
+                                <label for="price2">500 - 1 000 kr</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="price3" name="price" value="1000-3000">
+                                <label for="price3">1 000 - 3 000 kr</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="price4" name="price" value="3000-6000">
+                                <label for="price4">3 000 - 6 000 kr</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="price5" name="price" value="6000+">
+                                <label for="price5">6 000 kr +</label>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <button class="apply-filters">Tillämpa filter</button>
+                </div>
+            </aside>
+            
+            <section class="product-section">
+                <div class="category-header">
+                    <h1>Gaming & Konsoler</h1>
+                    <div class="sort-options">
+                        <label for="sort">Sortera efter:</label>
+                        <select id="sort" name="sort">
+                            <option value="popularity">Popularitet</option>
+                            <option value="price-low">Pris (Lägst först)</option>
+                            <option value="price-high">Pris (Högst först)</option>
+                            <option value="name">Namn (A-Ö)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="product-grid">
+                    <!-- Product 1 -->
+                    <div class="product-card" data-id="3001">
+                        <img src="images/ps5.jpg" alt="PlayStation 5">
+                        <div class="product-card-content">
+                            <h3>PlayStation 5</h3>
+                            <div class="product-description">825GB SSD, 4K UHD Blu-ray, DualSense Controller</div>
+                            <div class="product-price">5 990 kr</div>
+                            <button class="add-to-cart" data-id="3001">Lägg i varukorg</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 2 -->
+                    <div class="product-card" data-id="3002">
+                        <img src="images/xbox-series-x.jpg" alt="Xbox Series X">
+                        <div class="product-card-content">
+                            <h3>Xbox Series X</h3>
+                            <div class="product-description">1TB SSD, 4K UHD Blu-ray, Xbox Wireless Controller</div>
+                            <div class="product-price">5 490 kr</div>
+                            <button class="add-to-cart" data-id="3002">Lägg i varukorg</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 3 -->
+                    <div class="product-card" data-id="3003">
+                        <img src="images/nintendo-switch.jpg" alt="Nintendo Switch OLED">
+                        <div class="product-card-content">
+                            <h3>Nintendo Switch OLED</h3>
+                            <div class="product-description">7" OLED Display, 64GB Storage, Enhanced Audio</div>
+                            <div class="product-price">3 990 kr</div>
+                            <button class="add-to-cart" data-id="3003">Lägg i varukorg</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 4 -->
+                    <div class="product-card" data-id="3004">
+                        <img src="images/ps5-controller.jpg" alt="PlayStation 5 DualSense Controller">
+                        <div class="product-card-content">
+                            <h3>PlayStation 5 DualSense Controller</h3>
+                            <div class="product-description">Haptic Feedback, Adaptive Triggers, Built-in Mic</div>
+                            <div class="product-price">749 kr</div>
+                            <button class="add-to-cart" data-id="3004">Lägg i varukorg</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 5 -->
+                    <div class="product-card" data-id="3005">
+                        <img src="images/xbox-controller.jpg" alt="Xbox Wireless Controller">
+                        <div class="product-card-content">
+                            <h3>Xbox Wireless Controller</h3>
+                            <div class="product-description">Textured Grip, Share Button, 40-hour Battery Life</div>
+                            <div class="product-price">599 kr</div>
+                            <button class="add-to-cart" data-id="3005">Lägg i varukorg</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 6 -->
+                    <div class="product-card" data-id="3006">
+                        <img src="images/zelda.jpg" alt="The Legend of Zelda: Tears of the Kingdom">
+                        <div class="product-card-content">
+                            <h3>The Legend of Zelda: Tears of the Kingdom</h3>
+                            <div class="product-description">Nintendo Switch, Action-Adventure, Open World</div>
+                            <div class="product-price">599 kr</div>
+                            <button class="add-to-cart" data-id="3006">Lägg i varukorg</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 7 -->
+                    <div class="product-card" data-id="3007">
+                        <img src="images/meta-quest.jpg" alt="Meta Quest 3">
+                        <div class="product-card-content">
+                            <h3>Meta Quest 3</h3>
+                            <div class="product-description">128GB, Mixed Reality, High-res Color Passthrough</div>
+                            <div class="product-price">4 990 kr</div>
+                            <button class="add-to-cart" data-id="3007">Lägg i varukorg</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 8 -->
+                    <div class="product-card" data-id="3008">
+                        <img src="images/gaming-headset.jpg" alt="Gaming Headset">
+                        <div class="product-card-content">
+                            <h3>Gaming Headset</h3>
+                            <div class="product-description">7.1 Surround Sound, Noise-Cancelling Mic, RGB Lighting</div>
+                            <div class="product-price">899 kr</div>
+                            <button class="add-to-cart" data-id="3008">Lägg i varukorg</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pagination">
+                    <div class="results-info">Visar 1-8 av 24 produkter</div>
+                    <div class="page-links">
+                        <a href="#" class="active">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">Nästa »</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer  -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Om TechStore</h3>
+                <ul>
+                    <li><a href="about.html">Om oss</a></li>
+                    <li><a href="contact.html">Kontakta oss</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Följ oss</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link">&#128279; Facebook</a>
+                    <a href="#" class="social-link">&#128279; Twitter</a>
+                    <a href="#" class="social-link">&#128279; Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+   <!-- JavaScript för kategorispecifik funktionalitet -->
+    <script src="js/category.js"></script>
+    <!-- JavaScript för responsiv funktionalitet -->
+    <script src="js/responsive.js"></script>
+</body>
+</html>

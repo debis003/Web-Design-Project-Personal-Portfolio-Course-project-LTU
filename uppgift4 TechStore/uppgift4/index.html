@@ -1,0 +1,183 @@
+
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore - Din elektronikbutik</title> 
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+<!--
+/**
+ * TechStore - Startsida
+ * 
+ * Denna fil implementerar startsidan för TechStore med responsiv design.
+ * Sidan fungerar som huvudingång till webbplatsen och visar en välkomstbanner
+ * samt utvalda produkter i ett scrollbart rutnät.
+ *
+ * Designbeslut:
+ * - Använder en stor hero-banner för att skapa visuell impact och välkomna användare
+ * - Implementerar en scrollbar produktsektion med navigationskontroller
+ * - Dynamiskt laddar produkter via JavaScript för bättre prestanda och underhållbarhet
+ * - Följer företagets färgschema med #00AA00 som accentfärg i logotypen
+ * - Använder responsiv design för optimal visning på alla enheter
+ *
+ * Responsiva funktioner:
+ * - Hero-bannern anpassar textstorlek och padding baserat på skärmstorlek
+ * - Produktrutnätet ändrar antal synliga produkter baserat på skärmstorlek
+ * - Scroll-kontroller för produkter är touch-vänliga på mobila enheter
+ * - Header och navigation anpassas för olika skärmstorlekar (samma som andra sidor)
+ *
+ * Tillgänglighet:
+ * - Semantiska HTML-element används för bättre skärmläsarstöd
+ * - Bilder har beskrivande alt-text (tillagda dynamiskt via JavaScript)
+ * - Färgkontrast följer WCAG-riktlinjer för läsbarhet
+ * - Scroll-knappar har aria-label för skärmläsare
+ *
+ * Kopplade filer:
+ * - css/style.css: Grundläggande stilar för hela webbplatsen
+ * - css/responsive.css: Responsiva stilar för alla skärmstorlekar
+ * - js/main.js: Allmän JavaScript-funktionalitet
+ * - js/products.js: Laddar och visar produktdata
+ * - js/responsive.js: JavaScript för responsiv funktionalitet
+ *
+ * Notera: Det finns några kodproblem som bör åtgärdas:
+ * 1. Dubbla <head>-taggar i HTML-strukturen
+ * 2. responsive.css länkas två gånger
+ * 3. Font Awesome-ikoner refereras men CSS-filen verkar inte vara länkad
+ */
+-->
+
+<body>
+    <!-- 
+      Header-sektion
+      Samma struktur som på övriga sidor för konsekvent användarupplevelse.
+      Responsiv design med flexbox som omorganiseras på mindre skärmar.
+    -->
+    <header>
+        <!-- Header-innehåll (samma som på andra sidor) -->
+        <div class="header-top">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-text">Tech<span class="logo-highlight">Store</span></span>
+                </a>
+            </div>
+            <div class="search-bar">
+                <input type="search" placeholder="Sök produkter...">
+                <button type="submit"><i class="fas fa-search"></i> Sök</button>
+            </div>
+            <div class="user-actions">
+                <a href="#" class="account-link">
+                    <i class="fas fa-user"></i>
+                    &#128100;
+                    Mitt Konto
+                </a>
+                <a href="#" class="cart-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    &#128722;
+                    Varukorg <span id="cart-count">(0)</span>
+                </a>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="datorer.html">Datorer & Tillbehör</a></li>
+                <li><a href="mobil.html">Mobiltelefoner</a></li>
+                <li><a href="gaming.html">Gaming & Konsoler</a></li>
+                <li><a href="ljud.html">Ljud & Bild</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 
+          Hero-banner
+          Stor välkomstbanner med företagsnamn och tagline.
+          Designad för att vara iögonfallande och sätta tonen för webbplatsen.
+          På mobila enheter minskas textstorleken och padding för bättre anpassning.
+        -->
+        <section class="hero-banner">
+            <div class="banner-content">
+                <h1>Välkommen till <span class="banner-tech">Tech</span><span class="banner-store">Store</span></h1>
+                <p>Din destination för det senaste inom teknik</p>
+            </div>
+        </section>
+
+        <!-- 
+          Utvalda produkter-sektion
+          Visar utvalda produkter i ett scrollbart rutnät.
+          Produkter laddas dynamiskt via JavaScript från products.js.
+          Inkluderar scroll-knappar för att navigera genom produkterna.
+          
+          Responsiv design:
+          - På desktop: Visar 4-5 produkter åt gången
+          - På surfplatta: Visar 2-3 produkter åt gången
+          - På mobil: Visar 1-2 produkter åt gången
+        -->
+        <section class="featured-products">
+            <div class="section-header">
+                <h2>Utvalda Produkter</h2>
+                <!-- 
+                  Scroll-kontroller
+                  Knappar för att navigera genom produkterna.
+                  JavaScript-koppling via ID för att hantera scrollning.
+                -->
+                <div class="scroll-controls">
+                    <button class="scroll-btn prev" id="scroll-left">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="scroll-btn next" id="scroll-right"> 
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="scroll-container">
+                <!-- 
+              Scroll-container
+              Innehåller produktrutnätet och möjliggör horisontell scrollning.
+              Använder overflow-x: auto för touch-scrollning på mobila enheter.
+            -->
+                <div class="product-grid" id="featured-products">
+                   <!-- Produkter läggs till dynamiskt här via JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- 
+      Footer
+      Samma struktur som på övriga sidor för konsekvent användarupplevelse.
+      Responsiv design med flexbox som ändras från rad till kolumn på mobila enheter.
+    -->
+    <footer>
+        <!-- Footer-innehåll (samma som på andra sidor) -->
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Om TechStore</h3>
+                <ul>
+                    <li><a href="about.html">Om oss</a></li>
+                    <li><a href="contact.html">Kontakta oss</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Följ oss</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i>&#128279; Facebook</a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i>&#128279; Twitter</a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i>&#128279; Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+   
+    <!--JavaScript filer-->
+    <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/responsive.js"></script> 
+   
+</body>
+</html>

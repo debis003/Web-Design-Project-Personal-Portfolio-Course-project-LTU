@@ -1,0 +1,107 @@
+/**
+ * TechStore - Produktsida Stilmall
+ *
+ * Den här filen innehåller stilar specifikt för produktsidor och produktkort på TechStore-webbplatsen.
+ * Designen fokuserar på att presentera produkter på ett tydligt och attraktivt sätt.
+ * Jag har implementerat en konsekvent design för produktkort som används på flera sidor.
+ *
+ * Innehåll för att lättare hitta och navigera senare:
+ * 1. Produktfilter
+ * 2. Produktkort
+ * 3. Produktbild
+ * 4. Produkttitel och pris
+ * 5. Lägg i varukorg-knapp
+ *
+ * Designbeslut:
+ * - Använder flexbox för produktkortlayout för att säkerställa konsekvent höjd
+ * - Implementerar subtila designelement som rundade hörn och skuggor
+ * - Använder #00AA00 som accentfärg för priser och knappar
+ * - Skapar tydlig visuell hierarki inom produktkorten
+ */
+
+/* ======================================
+   1. Produktfilter
+   ====================================== */
+/* 
+   Jag lade till ett konsekvent nedre mellanrum för filterområdet
+   för att skapa tydlig separation från produktlistan.
+*/
+.product-filters {
+    margin-bottom: 2rem;
+}
+
+/* ======================================
+   2. Produktkort
+   ====================================== */
+/* 
+   Jag designade produktkorten med en subtil ram och rundade hörn
+   för att skapa en tydlig visuell avgränsning för varje produkt.
+   Flexbox med flex-direction: column säkerställer att korten har konsekvent höjd
+   och att innehållet är korrekt alignat.
+*/
+.product-card {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ======================================
+   3. Produktbild
+   ====================================== */
+/* 
+   Jag satte en fast höjd på produktbilderna för att säkerställa visuell konsekvens.
+   Object-fit: cover säkerställer att bilderna fyller utrymmet utan att förvrängas,
+   även om de har olika proportioner.
+*/
+.product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+/* ======================================
+   4. Produkttitel och pris
+   ====================================== */
+/* 
+   Jag valde en lämplig typsnittsstorlek för produkttiteln som balanserar
+   läsbarhet och utrymmesbehov.
+   Priset är markerat med fet stil och grön färg för att dra uppmärksamhet,
+   eftersom det är en viktig faktor i köpbeslutet.
+*/
+.product-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-price {
+    font-weight: bold;
+    color: #00AA00;
+    margin-bottom: 1rem;
+}
+
+/* ======================================
+   5. Lägg i varukorg-knapp
+   ====================================== */
+/* 
+   Jag designade en tydlig call-to-action-knapp med grön bakgrund
+   som matchar webbplatsens färgschema.
+   Hover-effekten ger tydlig visuell feedback när användaren interagerar med knappen.
+   Övergångseffekten gör färgändringen mjuk och professionell.
+*/
+.add-to-cart-btn {
+    background-color: #00AA00;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #008800;
+}
